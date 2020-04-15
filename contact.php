@@ -45,7 +45,7 @@ if(isset($_POST['submit'])) {
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="contact_form" name="contact_form">
                 	<div class="row">
                     <div class="col-md-6">
-                    	<label for="name"> Fullname </label>
+                    	<label for="name"> Fullname &nbsp;&nbsp;<span style="color:red;font-size: 1.5rem;">*</span></label>
                      <div class="form-group">
                        	<input type="text" name="name" id="name" class="form-control" placeholder="Fullname" />
                         
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])) {
                     </div>
                     
                     <div class="col-md-6">
-                    	<label for="email"> Email Address </label>
+                    	<label for="email"> Email Address &nbsp;&nbsp;<span style="color:red;font-size: 1.5rem;">*</span> </label>
                      <div class="form-group">
                        	<input type="email" name="email" id="email" class="form-control" placeholder="Email Address" />
                     </div>
@@ -61,13 +61,13 @@ if(isset($_POST['submit'])) {
                     </div>
                     <div class="row">
                     <div class="col-md-6">
-                    	<label for="subject"> Subject </label>
+                    	<label for="subject"> Subject &nbsp;&nbsp;<span style="color:red;font-size: 1.5rem;">*</span> </label>
                         <div class="form-group">
                         	<input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" />
                         </div>
                     </div>
                     <div class="col-md-12">
-                    	<label for="name"> Message </label>
+                    	<label for="name"> Message &nbsp;&nbsp;<span style="color:red;font-size: 1.5rem;">*</span> </label>
                      <div class="form-group">
                         	<textarea class="form-control" name="message" id="message" cols="90" rows="10">
                             </textarea>

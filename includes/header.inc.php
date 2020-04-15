@@ -201,6 +201,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  line-height: 1.42;
 		  border-radius: 15px;
 		}
+		.error {
+			color: red;
+		}
     </style>
 
 <script type="text/javascript">
