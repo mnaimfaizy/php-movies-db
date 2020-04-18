@@ -183,352 +183,310 @@
 ?>
 <?php include 'includes/nav.inc.php'; ?>
 
-        <div id="page-wrapper">
-        <div class="row">
-        	<div class="col-md-12">
-        <?php if(isset($result)) { ?>
-			<?php if($result == false) { ?>
-            <div class="col-md-10">
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Oh Snap!</strong> Movie insertion was failed, please try again! :(
-                </div>
-            </div>
-            <?php } else if($result == true) { ?>
-            <div class="col-md-10">
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Well done!</strong> Movie inserted successfully! :)
-                </div>
-            </div>
-            <?php } } ?>
-            </div>
-            </div>
-        <div class="graphs">
-        
-        	 <div class="xs">
-  	       		<h3>Add New Movie</h3>
-        		<div class="tab-content">
-                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                    <li class="active"><a href="#api" data-toggle="tab">Using API</a></li>
-                    <li><a href="#manual" data-toggle="tab">Add Manualy</a></li>
-                    
-                </ul>
-                <div id="my-tab-content" class="tab-content">
-                	<div class="tab-pane" id="manual">
-                    <h1>Add Movie Manualy</h1>
-                    	<div class="row">
-                    	<div class="col-md-12">
-                    	<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_movie" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Movie Title </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-film"></i>
-                                        </span>
-                                        <input type="text" class="form-control1" placeholder="Movie Title" name="movie_title" id="movie_title">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Duration </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-clock-o"></i>
-                                        </span>
-                                        <input type="text" class="form-control1" placeholder="Movie Duration" name="duration" id="duration">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Country </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-globe"></i>
-                                        </span>
-                                        <select name="country" id="country" class="form-control1">
-                                        	<option value="" disabled selected> -- Select Country -- </option>
-                                            <?php $sql = "SELECT * FROM Country ORDER BY country ASC";
-												$result = $database->query($sql);
-												while($country = $database->fetch_array($result)) { ?>
-                                        	<option value="<?php echo $country['country']; ?>"> 
-                                            	<?php echo $country['country']; ?> </option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Year </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                        <select name="year" id="year" class="form-control1">
-                                        	<option value="" disabled selected> -- Select Year -- </option>
-                                            <?php $sql = "SELECT * FROM year ORDER BY year ASC";
-												$result = $database->query($sql);
-												while($year = $database->fetch_array($result)) { ?>
-                                        		<option value="<?php echo $year['year']; ?>"> 
-                                                	<?php echo $year['year']; ?> </option>
-                                            <?php } ?>	
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Release Date </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                        <input type="date" class="form-control1" placeholder="Release Date" id="release_date" name="release_date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Director/s </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-users"></i>
-                                        </span>
-                                        <input type="text" name="director" id="director" class="form-control1" placeholder="Director" />                                   
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Rating </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-star-half-o"></i>
-                                        </span>
-                                        <input type="text" class="form-control1" placeholder="Rating for Movie" name="rating" id="rating">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Movie Description </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <textarea name="movie_description" id="movie_description" rows="10" cols="80">
-                                        </textarea>
-                                        <script>
-											// Replace the <textarea id="editor1"> with a CKEditor
-											// instance, using default configuration.
-											CKEDITOR.replace( 'movie_description' );
-										</script>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Trailer </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-youtube"></i>
-                                        </span>
-                                        <input type="text" class="form-control1" placeholder="Movie Trailer" name="trailer" id="trailer">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> IMDb Link </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-youtube"></i>
-                                        </span>
-                                        <input type="text" class="form-control1" placeholder="IMDb Link" name="imdb_link" id="imdb_link">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Status </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-check"></i>
-                                        </span>
-                                        <select name="status" id="status" class="form-control1">
-                                        	<option value="Active" selected> Active </option>
-                                            <option value="De-Active"> De-Active </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"> Movie Poster </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">							
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-picture-o"></i>
-                                        </span>
-                                        <input type="file" name="poster" id="poster" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <input type="submit" name="submit" id="submit" class="btn btn-success" value="Add Movie" />
-                                </div>
-                            </div>
-                        </form>
-                        </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-pane  active" id="api">
-                    <h1>Add Movie Using API</h1>
-                    	<div class="row">
-                    	<div class="col-md-12">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_movie_api">
-                    	<div class="col-md-8">
-                    	<div class="form-group">
-                            <label class="col-md-2 control-label"> Movie Title </label>
-                            <div class="col-md-8">
-                                <div class="input-group">							
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-film"></i>
-                                    </span>
-                                    <input type="text" class="form-control1" placeholder="Movie Title" name="movie_title" id="movie_title" autofocus>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-4">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <input type="submit" name="api_movie" id="api_movie" class="btn btn-success" value="Search for Movie" />
-                            </div>
-                        </div>
-                        </div>
-                    </form>
-                    </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                    	<div class="col-md-12">
-                            <?php if(isset($_POST['api_movie'])) { 
-                                    $title = urlencode($_POST['movie_title']);
-                                    $url = "http://www.omdbapi.com/?s=$title&plot=full&r=xml";
-									//echo $url = "http://www.omdbapi.com/?i=$title&plot=full&r=xml"; ?>
-                            <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th> No. </th>
-                                        <th> Movie </th>
-                                        <th> Year </th>
-                                        <th> Type </th>
-                                        <th> IMDb ID </th>
-                                        <th> Action </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-							<?php
-                            $result = xml2array($url);
-                            $no = 1;
-                            foreach($result as $res) {
-                                foreach($res as $res1) {
-                                    foreach($res1 as $res2) {
-                                        if(isset($res2['Title'], $res2['Year'], $res2['Type'], $res2['imdbID'])) {
-                                            $title = $database->escape_value($res2['Title']);
-											$imdb_id = $res2['imdbID'];
-											$sql = "SELECT COUNT(*) AS total FROM movie_table WHERE movie_title LIKE '%$title%' AND imdb_link='$imdb_id'";
-											$sql_result = $database->query($sql);
-											$total = $database->fetch_array($sql_result);
-											if($total['total'] > 0) {
-												echo '<tr style="background-color: #d6d6d6;">';
-											} else {
-												echo '<tr>';
-											}
-                                            echo '<td> '.$no++.' </td>';
-                                            echo '<td> '. $res2['Title'] .' </td>';
-                                            echo '<td> '. $res2['Year'] .' </td>';
-                                            echo '<td> '. $res2['Type'] .' </td>';
-                                            echo '<td> '. $res2['imdbID'] .' </td>';
-                                            echo '<td> ';
-											
-											if($total['total'] > 0) {
-												// Do nothing
-											} else {
-											echo '<form action="add_movie.php" method="post">
-														<input type="hidden" name="imdb_id" id="imdb_id" value="'.$res2['imdbID'] .'" />
-														<input type="submit" name="add_api_movie" id="add_api_movie" value="Save Info" class="btn btn-sm btn-success" />
-													</form>
-													<br />';
-											}
-                                             echo '<a href="view_details.php?imdb_id='.$res2['imdbID'].'" class="btn btn-sm btn-info" target="_blank"> View Details </a>
-                                            </td>';
-                                            echo '</tr>';	
-                                        } 
-                                    }
-                                }
-                            } ?>
-                            
-                        
-                        </tbody>
-                    </table></div>
-                    <?php } ?>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                    
-                    </div>
-                </div>
-        	</div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Add New Movie</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
 
-<script type="text/javascript">
-	$(document).ready(function() {
-        
-		// Validate add_user form
-		$("#add_movie").validate({
-		
-			rules: {
-				movie_title: "required",
-				duration: "required",
-				country: "required",
-				year: "required",
-				release_date: "required",
-				director: "required",
-				rating: "required",
-				movie_description: "required",
-				status: "required",
-				poster: "required"
-				
-			},
-			messages: {
-				movie_title: "Movie Title is required, Please enter valid movie title!",
-				duration: "Movie Duration is required, Please enter valid movie duration!",
-				country: "Country is required, Please select country from the list!",
-				year: "Year is required, Please select year from the list!",
-				release_date: "Release date is required, Please enter release date!",
-				director: "Director name is required, Please enter valid director name!",
-				rating: "Rating is required! Please enter valid rating!",
-				movie_description: "Movie Description is required! Please enter valid movie description",
-				status: "Status is required! Please select status from the list!",
-				poster: "Movie poster is requied! Please upload an image!"
-			},
-			highlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').addClass('has-error');
-				$(element).parents('.form-group').addClass('has-error');
-			},
-			unhighlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').removeClass('has-error');
-				$(element).parents('.input-group').addClass('has-success');
-				$(element).parents('.form-group').removeClass('has-error');
-				$(element).parents('.form-group').addClass('has-success');
-			}
-		});
-    });
-</script>        
+		  	<?php include 'includes/breadcrumbs.php'; ?>
+
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+	<!-- /.content-header -->
+	
+	    <!-- Main content -->
+		<div class="content">
+      		<div class="container-fluid">
+
+			<?php if(isset($result)) { 
+				if($result == false) { ?>
+					<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Oh Snap!</strong> Movie insertion was failed, please try again! :(
+					</div>
+			<?php } else if($result == true) { ?>
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Well done!</strong> Movie inserted successfully! :)
+					</div>
+			<?php }
+				} ?>
+
+				<div class="card card-primary card-tabs">
+					<div class="card-header p-0 pt-1">
+						<ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#api" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Using API</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#manual" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Add Manualy</a>
+						</li>
+						</ul>
+					</div> <!-- /.card-header -->
+
+					<div class="card-body">
+						<div class="tab-content" id="custom-tabs-one-tabContent">
+							<div class="tab-pane fade show active" id="api" role="tabpanel" aria-labelledby="api-tab">
+								<h3>Add Movie Using API</h3>
+
+								<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_movie_api">
+
+									<div class="row">
+										<div class="col-8">
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fa fa-film"></i></span>
+												</div>
+												<input type="text" class="form-control" placeholder="Movie Title" name="movie_title" id="movie_title" autofocus />
+											</div>
+										</div> <!-- /.col-8 -->
+										<div class="col-4">
+											<input type="submit" name="api_movie" id="api_movie" class="btn btn-success" value="Search for Movie" />
+										</div> <!-- /.col-4 -->
+									</div> <!-- /.row -->
+
+								</form>
+
+								<?php if(isset($_POST['api_movie'])) { 
+										$title = urlencode($_POST['movie_title']);
+										$url = "http://www.omdbapi.com/?s=$title&plot=full&r=xml";
+										//echo $url = "http://www.omdbapi.com/?i=$title&plot=full&r=xml"; ?>
+									<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th> No. </th>
+												<th> Movie </th>
+												<th> Year </th>
+												<th> Type </th>
+												<th> IMDb ID </th>
+												<th> Action </th>
+											</tr>
+										</thead>
+										<tbody>
+										
+									<?php
+									$result = xml2array($url);
+									$no = 1;
+									foreach($result as $res) {
+										foreach($res as $res1) {
+											foreach($res1 as $res2) {
+												if(isset($res2['Title'], $res2['Year'], $res2['Type'], $res2['imdbID'])) {
+													$title = $database->escape_value($res2['Title']);
+													$imdb_id = $res2['imdbID'];
+													$sql = "SELECT COUNT(*) AS total FROM movie_table WHERE movie_title LIKE '%$title%' AND imdb_link='$imdb_id'";
+													$sql_result = $database->query($sql);
+													$total = $database->fetch_array($sql_result);
+													if($total['total'] > 0) {
+														echo '<tr style="background-color: #d6d6d6;">';
+													} else {
+														echo '<tr>';
+													}
+													echo '<td> '.$no++.' </td>';
+													echo '<td> '. $res2['Title'] .' </td>';
+													echo '<td> '. $res2['Year'] .' </td>';
+													echo '<td> '. $res2['Type'] .' </td>';
+													echo '<td> '. $res2['imdbID'] .' </td>';
+													echo '<td> ';
+													
+													if($total['total'] > 0) {
+														// Do nothing
+													} else {
+													echo '<form action="add_movie.php" method="post">
+																<input type="hidden" name="imdb_id" id="imdb_id" value="'.$res2['imdbID'] .'" />
+																<input type="submit" name="add_api_movie" id="add_api_movie" value="Save Info" class="btn btn-sm btn-success" />
+															</form>
+															<br />';
+													}
+													echo '<a href="view_details.php?imdb_id='.$res2['imdbID'].'" class="btn btn-sm btn-info" target="_blank"> View Details </a>
+													</td>';
+													echo '</tr>';	
+												} 
+											}
+										}
+									} ?>
+									
+								
+									</tbody>
+								</table></div>
+								<?php } ?>
+
+							</div> <!-- /#api -->
+
+							<div class="tab-pane fade" id="manual" role="tabpanel" aria-labelledby="manual-tab">
+								<h3>Add Movie Manualy</h3>
+
+								<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_movie" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fa fa-film"></i></span>
+													</div>
+													<input type="text" class="form-control" placeholder="Movie Title" name="movie_title" id="movie_title">
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="far fa-clock"></i></span>
+													</div>
+													<input type="text" class="form-control" placeholder="Movie Duration" name="duration" id="duration">
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fa fa-globe"></i></span>
+													</div>
+													<select name="country" id="country" class="form-control">
+														<option value="" disabled selected> -- Select Country -- </option>
+														<?php $sql = "SELECT * FROM Country ORDER BY country ASC";
+															$result = $database->query($sql);
+															while($country = $database->fetch_array($result)) { ?>
+														<option value="<?php echo $country['country']; ?>"> 
+															<?php echo $country['country']; ?> </option>
+														<?php } ?>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+													</div>
+													<select name="year" id="year" class="form-control">
+														<option value="" disabled selected> -- Select Year -- </option>
+														<?php $sql = "SELECT * FROM year ORDER BY year ASC";
+															$result = $database->query($sql);
+															while($year = $database->fetch_array($result)) { ?>
+															<option value="<?php echo $year['year']; ?>"> 
+																<?php echo $year['year']; ?> </option>
+														<?php } ?>	
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+													</div>
+													<input type="date" class="form-control" placeholder="Release Date" id="release_date" name="release_date">
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fa fa-users"></i></span>
+													</div>
+													<input type="text" name="director" id="director" class="form-control" placeholder="Director" />                                   
+												</div>
+											</div>
+										</div>
+
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="far fa-star-half"></i></span>
+													</div>
+													<input type="text" class="form-control" placeholder="Rating for Movie" name="rating" id="rating">                                  
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fab fa-youtube"></i></span>
+													</div>
+													<input type="text" class="form-control" placeholder="Movie Trailer" name="trailer" id="trailer">                                
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fab fa-imdb"></i></span>
+													</div>
+													<input type="text" class="form-control" placeholder="IMDb Link" name="imdb_link" id="imdb_link">                               
+												</div>
+											</div>
+										</div>
+
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text"><i class="fa fa-check"></i></i></span>
+													</div>
+													<select name="status" id="status" class="form-control">
+														<option value="" selected disabled> --- Select Status --- </option>
+														<option value="Active" selected> Active </option>
+														<option value="De-Active"> De-Active </option>
+													</select>                             
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group">
+												<div class="input-group">
+												<div class="custom-file">
+													<input type="file" class="custom-file-input" name="poster" id="poster" class="form-control" /> 
+													<label class="custom-file-label" for="exampleInputFile">Movie Poster</label>
+												</div>
+												<div class="input-group-append">
+													<span class="input-group-text" id=""><i class="far fa-image"></i></span>
+												</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-12">
+											<div class="form-group">
+												<label>Movie Description</label>
+												<textarea class="form-control" name="movie_description" id="movie_description" rows="10" cols="80"></textarea>
+											</div>
+										</div>
+
+										<div class="col-12">
+											<input type="submit" name="submit" id="submit" class="btn btn-success" value="Add Movie" />
+										</div>
+									</div>
+
+									</div>
+								</form>
+
+							</div> <!-- /#manual -->
+						</div> <!-- /.tab-content -->
+					</div> <!-- /.card-body -->
+				</div> <!-- /.card -->
+
+			</div><!-- /.container-fluid -->
+		</div>
+		<!-- /.content -->
+
+       
 <?php include 'includes/footer.inc.php'; ?>

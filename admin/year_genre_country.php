@@ -79,153 +79,126 @@
 	}
 	
 ?>
-<script type="text/javascript">
-	function conf(id) {
-		var value = window.confirm("Are You sure! You want to DELETE selected Item?");
-		if(value == true) {
-			window.location = "year_genre_country.php?year_id="+id+"&delete=year";
-			//console.log(id);	
-		} else {
-			alert("Please Select Correct Item");	
-		}
-	}
-	function conf_genre(id) {
-		var value = window.confirm("Are You sure! You want to DELETE selected Item?");
-		if(value == true) {
-			window.location = "year_genre_country.php?genre_id="+id+"&delete=genre";
-			//console.log(id);	
-		} else {
-			alert("Please Select Correct Item");	
-		}
-	}
-	function conf_country(id) {
-		var value = window.confirm("Are You sure! You want to DELETE selected Item?");
-		if(value == true) {
-			window.location = "year_genre_country.php?country_id="+id+"&delete=country";
-			//console.log(id);	
-		} else {
-			alert("Please Select Correct Item");	
-		}
-	}
-	
-</script>
 <?php include 'includes/nav.inc.php'; ?>
 
-        <div id="page-wrapper">
-        <div class="graphs">
-        
-        	 <div class="xs">
-  	       		<h3>Add Year / Genre / Country</h3>
-        		<div class="tab-content">
-                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                    <li class="active"><a href="#year" data-toggle="tab">Year</a></li>
-                    <li><a href="#genre" data-toggle="tab">Genre</a></li>
-                    <li><a href="#country" data-toggle="tab">Country</a></li>
-                </ul>
-            <div id="my-tab-content" class="tab-content">
-                <div class="tab-pane active" id="year">
-                    <h1>Add Year</h1>
-                    <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_year">
-                    <div class="form-group">
-                        <label class="col-md-2 control-label"> Year </label>
-                        <div class="col-md-8">
-                            <div class="input-group">							
-                                <span class="input-group-addon">
-                                    <i class="fa fa-film"></i>
-                                </span>
-                                <input type="text" class="form-control1" placeholder="Year" name="year" id="year">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <input type="submit" name="add_year" id="add_year" class="btn btn-success" value="Add Year" />
-                        </div>
-                    </div>
-                    </form>
-                    <div class="tab-content">
-    					<div class="tab-pane active">
-                            	<p>
-                                Search: <input id="filter" type="text" class="form-inline"/>
-                              </p> <br />
-                            <table class="footable metro-green" data-page-size="10" data-filter="#filter" data-filter-text-only="true">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Add Year / Genre / Country</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+
+            <?php include 'includes/breadcrumbs.php'; ?>
+
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="card card-primary card-outline">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="year-tab" data-toggle="pill" href="#year" role="tab" aria-controls="year" aria-selected="true">Year</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="genre-tab" data-toggle="pill" href="#genre" role="tab" aria-controls="genre" aria-selected="false">Genre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="country-tab" data-toggle="pill" href="#country" role="tab" aria-controls="country" aria-selected="false">Country</a>
+                        </li>
+                    </ul>
+                </div> <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade show active" id="year" role="tabpanel" aria-labelledby="year-tab">
+                            <h3>Add Year</h3>
+                            <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_year">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="form-group">
+                                            <div class="input-group">							
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-film"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Year" name="year" id="year">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input type="submit" name="add_year" id="add_year_btn" class="btn btn-success" value="Add Year" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+
+                            <table class="table table-hovered" id="year_table">
                                 <thead>
                                 <tr>
-                                    <th>
-                                        Number
-                                    </th>
-                                    <th>
-                                        Year
-                                    </th>
-                                    <th data-hide="phone,tablet">
-                                        Action
-                                    </th>
+                                    <th>Number</th>
+                                    <th>Year</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $no = 1;
-									$sql = "SELECT * FROM year";
-									$res = $database->query($sql);
-									while($year = $database->fetch_array($res)) { ?>
-                                <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo $year['year']; ?></td>
-                                    <td data-value="1">
-                                    <button id="<?php echo $year['year_id']; ?>" onClick="conf(this.id)" data-toggle="tooltip" title="Delete this item" data-placement="top" class="btn status-metro status-suspended">
-                                    <i class="fa fa-trash-o"></i> Delete
-                                    </button></td>
-                                </tr>
-                                <?php } ?>
+                                    <?php $no = 1;
+                                        $sql = "SELECT * FROM year";
+                                        $res = $database->query($sql);
+                                        while($year = $database->fetch_array($res)) { ?>
+                                    <tr>
+                                        <td><?php echo $no++; ?></td>
+                                        <td><?php echo $year['year']; ?></td>
+                                        <td data-value="1">
+                                        <button id="<?php echo $year['year_id']; ?>" class="btn btn-danger btn-sm" onClick="conf(this.id)" data-toggle="tooltip" title="Delete this item" data-placement="top" class="btn status-metro status-suspended">
+                                        <i class="fas fa-trash"></i> Delete
+                                        </button></td>
+                                    </tr>
+                                    <?php } ?>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="pagination pagination-centered"></div>
-                                    </td>
-                                </tr>
-                                </tfoot>
                             </table>
-                    </div>
-                </div>
-                </div>
-                <div class="tab-pane" id="genre">
-                    <h1>Add Genre</h1>
-                    <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_genre">
-                    <div class="form-group">
-                        <label class="col-md-2 control-label"> Genre </label>
-                        <div class="col-md-8">
-                            <div class="input-group">							
-                                <span class="input-group-addon">
-                                    <i class="fa fa-film"></i>
-                                </span>
-                                <input type="text" class="form-control1" placeholder="Genre" name="genre" id="genre">
-                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <input type="submit" name="add_genre" id="add_genre" class="btn btn-success" value="Add Genere" />
-                        </div>
-                    </div>
-                    </form>
-                    
-                    <div class="tab-content">
-    					<div class="tab-pane active">
-                            	<p>
-                                Search: <input id="filter" type="text" class="form-inline"/>
-                              </p> <br />
-                            <table class="footable metro-green" data-page-size="10" data-filter="#filter" data-filter-text-only="true">
+                        <div class="tab-pane fade " id="genre" role="tabpanel" aria-labelledby="genre-tab">
+                            <h3>Add Genre</h3>
+                            <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_genre">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-film"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Genre" name="genre" id="genre">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input type="submit" name="add_genre" id="add_genre_btn" class="btn btn-success" value="Add Genere" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+
+                            <table class="table table-hovered" id="genre_table">
                                 <thead>
                                 <tr>
-                                    <th>
-                                        Number
-                                    </th>
-                                    <th>
-                                        Genre
-                                    </th>
-                                    <th data-hide="phone,tablet">
-                                        Action
-                                    </th>
+                                    <th>Number</th>
+                                    <th>Genre</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -237,61 +210,43 @@
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo $year['genre']; ?></td>
                                     <td data-value="1">
-                                    <button id="<?php echo $year['genre_id']; ?>" onClick="conf_genre(this.id)" data-toggle="tooltip" title="Delete this item" data-placement="top" class="btn status-metro status-suspended">
-                                    <i class="fa fa-trash-o"></i> Delete
+                                    <button id="<?php echo $year['genre_id']; ?>" class="btn btn-danger btn-sm" onClick="conf_genre(this.id)" data-toggle="tooltip" title="Delete this item" data-placement="top" class="btn status-metro status-suspended">
+                                    <i class="fas fa-trash"></i> Delete
                                     </button></td>
                                 </tr>
                                 <?php } ?>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="pagination pagination-centered"></div>
-                                    </td>
-                                </tr>
-                                </tfoot>
                             </table>
-                    </div>
-                </div>
-                </div>
-                <div class="tab-pane" id="country">
-                    <h1>Add Country</h1>
-                    <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_country">
-                    <div class="form-group">
-                        <label class="col-md-2 control-label"> Country </label>
-                        <div class="col-md-8">
-                            <div class="input-group">							
-                                <span class="input-group-addon">
-                                    <i class="fa fa-film"></i>
-                                </span>
-                                <input type="text" class="form-control1" placeholder="Country" name="country" id="country">
-                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <input type="submit" name="add_country" id="add_country" class="btn btn-success" value="Add Country" />
-                        </div>
-                    </div>
-                    </form>
-                    
-                    <div class="tab-content">
-    					<div class="tab-pane active">
-                            	<p>
-                                Search: <input id="filter" type="text" class="form-inline"/>
-                              </p> <br />
-                            <table class="footable metro-green" data-page-size="10" data-filter="#filter" data-filter-text-only="true">
+                        <div class="tab-pane fade " id="country" role="tabpanel" aria-labelledby="country-tab">
+                            <h3>Add Country</h3>
+                            <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="add_country">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="form-group">
+                                            <div class="input-group">	
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-film"></i></span>
+                                                </div>						
+                                                <input type="text" class="form-control" placeholder="Country" name="country" id="country">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input type="submit" name="add_country" id="add_country_btn" class="btn btn-success" value="Add Country" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+
+                            <table class="table table-hovered" id="country_table">
                                 <thead>
                                 <tr>
-                                    <th>
-                                        Number
-                                    </th>
-                                    <th>
-                                        Country
-                                    </th>
-                                    <th data-hide="phone,tablet">
-                                        Action
-                                    </th>
+                                    <th>Number</th>
+                                    <th>Country</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -303,110 +258,27 @@
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo $year['country']; ?></td>
                                     <td data-value="1">
-                                    <button id="<?php echo $year['country_id']; ?>" onClick="conf_country(this.id)" data-toggle="tooltip" title="Delete this item" data-placement="top" class="btn status-metro status-suspended">
-                                    <i class="fa fa-trash-o"></i> Delete
+                                    <button id="<?php echo $year['country_id']; ?>" class="btn btn-danger btn-sm" onClick="conf_country(this.id)" data-toggle="tooltip" title="Delete this item" data-placement="top" class="btn status-metro status-suspended">
+                                    <i class="fas fa-trash"></i> Delete
                                     </button></td>
                                 </tr>
                                 <?php } ?>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="pagination pagination-centered"></div>
-                                    </td>
-                                </tr>
-                                </tfoot>
                             </table>
-                    </div>
-                </div>
+                        </div>
+                    </div> <!-- /.tab-content -->
 
-                </div>
-            </div>
-                </div>
-        	</div>
+                </div> <!-- /.card-body -->
+            </div><!-- /.card -->
 
-<script type="text/javascript">
-	$(document).ready(function() {
-        
-		// Validate add_year form
-		$("#add_year").validate({
-		
-			rules: {
-				year: {
-					required: true,
-					minlength: 4
-				}
-				
-			},
-			messages: {
-				year: {
-					required: "Year is required!",
-					minlenght: "Year must be at least 4 characters"
-				}
-			},
-			highlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').addClass('has-error');
-				$(element).parents('.form-group').addClass('has-error');
-			},
-			unhighlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').removeClass('has-error');
-				$(element).parents('.input-group').addClass('has-success');
-				$(element).parents('.form-group').removeClass('has-error');
-				$(element).parents('.form-group').addClass('has-success');
-			}
-		});
-		
-		// Validate add_year form
-		$("#add_genre").validate({
-		
-			rules: {
-				genre: {
-					required: true
-				}
-				
-			},
-			messages: {
-				genre: {
-					required: "Genre is required!"
-				}
-			},
-			highlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').addClass('has-error');
-				$(element).parents('.form-group').addClass('has-error');
-			},
-			unhighlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').removeClass('has-error');
-				$(element).parents('.input-group').addClass('has-success');
-				$(element).parents('.form-group').removeClass('has-error');
-				$(element).parents('.form-group').addClass('has-success');
-			}
-		});
-		
-		// Validate add_country form
-		$("#add_country").validate({
-		
-			rules: {
-				country: {
-					required: true
-				}
-				
-			},
-			messages: {
-				country: {
-					required: "Country is required!"
-				}
-			},
-			highlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').addClass('has-error');
-				$(element).parents('.form-group').addClass('has-error');
-			},
-			unhighlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').removeClass('has-error');
-				$(element).parents('.input-group').addClass('has-success');
-				$(element).parents('.form-group').removeClass('has-error');
-				$(element).parents('.form-group').addClass('has-success');
-			}
-		});
-    });
-</script>        
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+     
 <?php include 'includes/footer.inc.php'; ?>
