@@ -33,9 +33,23 @@
                 "autoWidth": false,
             });
 
-            $("#add_trailer").DataTable({
+            var dataTable = $('#add_trailer').DataTable({
                 "responsive": true,
-                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    url: "ajax/getTrailers.php", // json datasource
+                    data: {action: 'getTrailer'},
+                    type: 'post',  // method  , by default get
+
+                },
+                error: function () {  // error handling
+                    $(".add_trailer-error").html("");
+                    $("#add_trailer").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                    $("#add_trailer_processing").css("display", "none");
+
+                }
+
             });
 
             $("#year_table").DataTable({
