@@ -1,37 +1,111 @@
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="add_user.php"><i class="fa fa-user fa-fw nav_icon"></i>Add User</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-film nav_icon"></i>Movie<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="add_movie.php">Add Movie</a>
-                                </li>
-                                <li>
-                                    <a href="movie_list.php">Movie List</a>
-                                </li>
-                                <li>
-                                    <a href="add_trailer.php">Add Trailer</a>
-                                </li>
-								<li>
-                                    <a href="year_genre_country.php">+Year +Genre +Country</a>
-                                </li>
-                                <li>
-                                    <a href="comment.php">Comments</a>
-                                </li>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="assets/images/logo.png" alt="MNF Movies DB" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">&nbsp;</span>
+    </a>
 
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li> 
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="assets/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Alexander Pierce</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+          <li class="nav-item">
+            <a href="/" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Users
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="add_user.php" class="nav-link">
+                    <i class="fas fa-user-plus nav-icon"></i> 
+                    <p>Add User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>User List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-film"></i>
+              <p>
+                Movies
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="add_movie.php" class="nav-link">
+                  <i class="far fa-file-video nav-icon"></i>
+                  <p>Add Movie</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="movie_list.php" class="nav-link">
+                  <i class="far fa-list-alt nav-icon"></i>
+                  <p>Movie List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="add_trailer.php" class="nav-link">
+                  <i class="fas fa-photo-video nav-icon"></i>
+                  <p>Add Trailer</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="year_genre_country.php" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>+Year +Genre +Country</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="comment.php" class="nav-link">
+                <i class="nav-icon fas fa-comments"></i>
+              <p>
+                Comments
+              </p>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
