@@ -36,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="assets/css/search_style.css" rel="stylesheet">
+<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 
