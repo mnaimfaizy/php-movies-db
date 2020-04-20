@@ -56,6 +56,12 @@ function get_page_name() {
 	return basename($_SERVER['PHP_SELF']);	
 }
 
+function current_url() {
+    $url      = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $validURL = str_replace("&", "&amp", $url);
+    return $validURL;
+}
+
 function breadcrumb() {  
     $page_name = get_page_name();
 	$output = '';    
@@ -351,6 +357,47 @@ function xml2array($url, $get_attributes = 1, $priority = 'tag')
         }
     }
     return ($xml_array);
+}
+
+// Alert function takes the status and message from the user then checkes it and call the other functions
+function alerts($type, $payload) {
+    switch($type) {
+        case 'success':
+            return success_alert($payload);
+        break;
+        case 'danger':
+            return danger_alert($payload);
+        break;
+        case 'warning':
+            return warning_alert($payload);
+        break;
+        default:
+            return '';
+    }
+}
+
+// return danger alert box when called
+function danger_alert($data) {
+    return '<div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Oh Snap!</strong> '.$data.'
+            </div>';
+}
+
+// return success alert box when called
+function success_alert($data) {
+    return '<div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Well done!</strong> '.$data.'
+            </div>';
+}
+
+// return warning alert box when called
+function warning_alert($data) {
+    return '<div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning!</strong> '.$data.'
+            </div>';
 }
 
 ?>
