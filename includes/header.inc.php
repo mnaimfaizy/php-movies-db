@@ -97,11 +97,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		#overlay div {position:absolute;left:50%;top:50%;margin-top:-32px;margin-left:-32px;}
 		.page-content {padding: 20px;margin: 0 auto;}
 		.pagination-setting {padding:10px; margin:5px 0px 10px;border:#bccfd8  1px solid;color:#607d8b;}
+
+		.background-image {
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: relative;
+		}
+		.background-image::after {
+			content: "";
+			<?php if(isset($_GET['movie_id'])) {
+					$poster = $database->getMoviePoster($_GET['movie_id']); ?>
+				background: url(assets/images/movie_poster/<?php echo $poster; ?>) #3f444e no-repeat;
+			<?php } else { ?>
+				background: #3f444e; 
+			<?php } ?>
+			background-size: 100% 100%;
+			opacity: 0.5;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;   
+		}
     </style>
 
 </head>
 <body style="position: relative;">
 	<div id="overlay"><div><img src="assets/images/loading.gif" width="64px" height="64px"/></div></div>
+	<div class="background-image">
 	<div class="container">
 	<div class="container_wrap">
 		<div class="header_top">

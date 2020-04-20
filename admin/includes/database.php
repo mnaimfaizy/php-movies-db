@@ -89,6 +89,12 @@ class MySQLDatabase {
 		return $rowcount;	
 	}
 
+	function getMoviePoster($movie_id) {
+		$query = $this->query("SELECT poster FROM movies WHERE movie_id={$movie_id} LIMIT 1");
+		$result = $this->fetch_array($query);
+		return $result['poster'];
+	}
+
 }
 
 $database = new MySQLDatabase();

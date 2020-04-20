@@ -58,6 +58,7 @@
   </footer>
 </div>	
 
+</div>
 <!-- start plugins -->
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="assets/js/responsiveslides.min.js"></script>
