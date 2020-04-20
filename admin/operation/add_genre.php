@@ -1,4 +1,4 @@
-<?php require_once("includes/initialize.php"); ?>
+<?php require_once("../includes/initialize.php"); ?>
 <?php
 	// First check the form is submited and there are values in for updating the table
 	if(isset($_POST['submit_genre'])) {
@@ -11,9 +11,9 @@
 		
 		// Check the record has been inserted successfully and redirect the user to movie_list.php page
 		if($database->query($sql)) {
-			redirect_to("movie_list.php");	
+			redirect_to("../movie_list.php?msg=1&type=genre");	
 		} else {
-			redirect_to("movie_list.php?error=1");
+			redirect_to("../movie_list.php?msg=0&type=genre");
 		}
 	}
 ?>

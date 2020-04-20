@@ -28,12 +28,27 @@
     <script src="assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#movies_list").DataTable({
+
+            var moviesListDataTable = $('#movies_list').DataTable({
                 "responsive": true,
-                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    url: "ajax/getMovies.php", // json datasource
+                    data: {action: 'getMovies'},
+                    type: 'post',  // method  , by default get
+
+                },
+                error: function () {  // error handling
+                    $(".movies_list-error").html("");
+                    $("#movies_list").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                    $("#movies_list_processing").css("display", "none");
+
+                }
+
             });
 
-            var dataTable = $('#add_trailer').DataTable({
+            var addTrailerDataTable = $('#add_trailer').DataTable({
                 "responsive": true,
                 "processing": true,
                 "serverSide": true,
@@ -87,6 +102,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+
+        // Update Genre when form is submited
+        $('.add-genre').on('click', function(e) {
+            console.log('form submited');
+            console.log($(this).data('id').value());
+        });
         
 		// Validate add_user form
 		$("#add_movie").validate({
@@ -274,16 +295,16 @@
 </script> 
 
 <script>
-    function conf(id) {
+    function deleteMovie(id) {
 		var value = window.confirm("Are you sure! You want to delete selected Item?");
 		if(value == true) {
-			window.location = "movie_list.php?movie_id="+id+"&task=delete";
+			window.location = "operation/delete_movie.php?movie_id="+id;
 		} else { 
 			// Do something else
 		}
     }
     
-    function conf(id) {
+    function deleteYear(id) {
 		var value = window.confirm("Are You sure! You want to DELETE selected Item?");
 		if(value == true) {
 			window.location = "year_genre_country.php?year_id="+id+"&delete=year";
@@ -311,7 +332,7 @@
 		}
     }
     
-    function conf(id) {
+    function deleteComment(id) {
 		var value = window.confirm("Are You sure! You want to DELETE selected Item?");
 		if(value == true) {
 			window.location = "comment.php?comment_id="+id;
