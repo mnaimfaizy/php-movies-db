@@ -176,11 +176,38 @@
           mainClass: 'mfp-fade',
           removalDelay: 160,
           preloader: false,
-
           fixedContentPos: false
 		});
 		
-      });
+	  });
+	  
+	  /* This section is for the pagination of the website 
+	   * Here we are taking the data from the page and passing it to the pagination processor page
+	   * It will generate the data according to the limit specifid and populate the screen with it.
+	   */
+	<?php if($page_name === 'index.php') { ?>
+		function getresult(url) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val()},
+				beforeSend: function(){$("#overlay").show();},
+				success: function(data){
+					$("#pagination-result").html(data);
+					setInterval(function() {$("#overlay").hide(); },2000);
+				},
+				error: function() 
+				{} 	        
+			});
+
+		}
+		function changePagination(option) {
+			if(option!= "") {
+				getresult("ajax/loadMovies.php");
+			}
+		}
+		getresult("ajax/loadMovies.php");
+	<?php } ?>
 </script>
 
 <script type="text/javascript">
