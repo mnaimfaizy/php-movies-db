@@ -106,7 +106,7 @@
 						if(preg_match($reg_exUrl, $text, $url)) {
 							$poster = $url[0];
 						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
+							$poster = 'assets/images/movie_poster/'.$movie['poster'];
 						} ?>
                     <div class="col-md-3" style="margin-bottom: 20px;"><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $movie['movie_title']; ?>">
                     	<div class="grid_2">

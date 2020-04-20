@@ -57,7 +57,159 @@
 	</div>
   </footer>
 </div>	
-<script type="text/javascript" src="js/search_script.js" ></script>	
 
+<!-- start plugins -->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/js/responsiveslides.min.js"></script>
+<!-- Magnific Popup core JS file -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+<script src="assets/js/search_script.js" ></script>	
+<script src="assets/js/jquery.validate.min.js"></script>
+<script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+
+	$(document).ready(function() {
+        // Validate comment_form form
+		$("#comment_form").validate({
+		
+			rules: {
+				name: {
+					required: true,
+					minlenght: 4
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				
+				message: {
+					required: true,
+					minlenght: 10
+				}
+				
+			},
+			messages: {
+				name: {
+					required: "Name is required! Please enter valid name.",
+					minlenght: "Name must be grater than 4 characters."
+				},
+				email: {
+					required: "Email is required! Please enter valid email address.",
+					email: "Please provide valid email address."
+				},
+				
+				message: {
+					required: "Message is required! Please enter valid message.",
+					minlenght: "Message must be grater than 10 characters."
+				}
+			},
+			highlight:function(element, errorClass, validClass) {
+				$(element).parents('.input-group').addClass('has-error');
+				$(element).parents('.form-group').addClass('has-error');
+			},
+			unhighlight:function(element, errorClass, validClass) {
+				$(element).parents('.input-group').removeClass('has-error');
+				$(element).parents('.input-group').addClass('has-success');
+				$(element).parents('.form-group').removeClass('has-error');
+				$(element).parents('.form-group').addClass('has-success');
+			}
+		});
+        
+		// Validate contact_form form
+		$("#contact_form").validate({
+		
+			rules: {
+				name: {
+					required: true,
+					minlenght: 4
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				subject: "required",
+				message: {
+					required: true,
+					minlenght: 10
+				}
+				
+			},
+			messages: {
+				name: {
+					required: "Name is required! Please enter valid name.",
+					minlenght: "Name must be grater than 4 characters."
+				},
+				email: {
+					required: "Email is required! Please enter valid email address.",
+					email: "Please provide valid email address."
+				},
+				subject: "Subject is required! Please enter valid subject.",
+				message: {
+					required: "Message is required! Please enter valid message.",
+					minlenght: "Message must be grater than 10 characters."
+				}
+			},
+			highlight:function(element, errorClass, validClass) {
+				$(element).parents('.input-group').addClass('has-error');
+				$(element).parents('.form-group').addClass('has-error');
+			},
+			unhighlight:function(element, errorClass, validClass) {
+				$(element).parents('.input-group').removeClass('has-error');
+				$(element).parents('.input-group').addClass('has-success');
+				$(element).parents('.form-group').removeClass('has-error');
+				$(element).parents('.form-group').addClass('has-success');
+			}
+		});
+
+        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+          disableOn: 700,
+          type: 'iframe',
+          mainClass: 'mfp-fade',
+          removalDelay: 160,
+          preloader: false,
+
+          fixedContentPos: false
+		});
+		
+      });
+</script>
+
+<script type="text/javascript">
+	$(window).load(function() {
+	$("#flexiselDemo3").flexisel({
+		visibleItems: 4,
+		animationSpeed: 1000,
+		autoPlay: true,
+		autoPlaySpeed: 3000,    		
+		pauseOnHover: true,
+		enableResponsiveBreakpoints: true,
+		responsiveBreakpoints: { 
+			portrait: { 
+				changePoint:480,
+				visibleItems: 1
+			}, 
+			landscape: { 
+				changePoint:640,
+				visibleItems: 2
+			},
+			tablet: { 
+				changePoint:768,
+				visibleItems: 3
+			}
+		}
+	});
+	
+});
+</script>
+<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 </body>
 </html>

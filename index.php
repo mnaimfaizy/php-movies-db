@@ -19,11 +19,11 @@
 	      <div class="slider">
 	   <div class="callbacks_container">
 	      <ul class="rslides" id="slider">
-	        <li><img src="images/banner.jpg" class="img-responsive" alt=""/>
+	        <li><img src="assets/images/banner.jpg" class="img-responsive" alt=""/>
 			</li>
-	        <li><img src="images/banner1.jpg" class="img-responsive" alt=""/>
+	        <li><img src="assets/images/banner1.jpg" class="img-responsive" alt=""/>
 			</li>
-	        <li><img src="images/banner2.jpg" class="img-responsive" alt=""/>
+	        <li><img src="assets/images/banner2.jpg" class="img-responsive" alt=""/>
 			</li>
 	      </ul>
 	    </div>
@@ -139,7 +139,7 @@
 						if(preg_match($reg_exUrl, $text, $url)) {
 							$poster = $url[0];
 						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
+							$poster = 'assets/images/movie_poster/'.$movie['poster'];
 						} ?>
                     <div class="col-md-3" style="margin-bottom: 20px;"><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $movie['movie_title']; ?>">
                     	<div class="grid_2">
@@ -200,54 +200,26 @@
 			<div class="clearfix"> </div>
 		</div>      
         
-        <h1 class="recent">Latest Uploaded Movies</h3>
-                   <ul id="flexiselDemo3">
-                   		<?php $sql = "SELECT * FROM movie_table WHERE status='Active' ORDER BY movie_id DESC LIMIT 10";
-						//$sql = "SELECT * FROM movie_table ORDER BY movie_id DESC LIMIT 12";
-						$result = $database->query($sql);
-						while($movie = $database->fetch_array($result)) { 
-						// The Regular Express filter
-						$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
-						// The text you want to filter goes here. 
-						$text = $movie['poster'];
-						// Check if there is a url in the text
-						if(preg_match($reg_exUrl, $text, $url)) {
-							$poster = $url[0];
-						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
-						} ?>
-						<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
-                        <?php } ?>
-				    </ul>
-				    <script type="text/javascript">
-					 $(window).load(function() {
-						$("#flexiselDemo3").flexisel({
-							visibleItems: 4,
-							animationSpeed: 1000,
-							autoPlay: true,
-							autoPlaySpeed: 3000,    		
-							pauseOnHover: true,
-							enableResponsiveBreakpoints: true,
-					    	responsiveBreakpoints: { 
-					    		portrait: { 
-					    			changePoint:480,
-					    			visibleItems: 1
-					    		}, 
-					    		landscape: { 
-					    			changePoint:640,
-					    			visibleItems: 2
-					    		},
-					    		tablet: { 
-					    			changePoint:768,
-					    			visibleItems: 3
-					    		}
-					    	}
-					    });
-					    
-					});
-				   </script>
-				   <script type="text/javascript" src="js/jquery.flexisel.js"></script>
-                   
+        	<h1 class="recent">Latest Uploaded Movies</h3>
+			<ul id="flexiselDemo3">
+				<?php $sql = "SELECT * FROM movie_table WHERE status='Active' ORDER BY movie_id DESC LIMIT 10";
+				//$sql = "SELECT * FROM movie_table ORDER BY movie_id DESC LIMIT 12";
+				$result = $database->query($sql);
+				while($movie = $database->fetch_array($result)) { 
+				// The Regular Express filter
+				$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
+				// The text you want to filter goes here. 
+				$text = $movie['poster'];
+				// Check if there is a url in the text
+				if(preg_match($reg_exUrl, $text, $url)) {
+					$poster = $url[0];
+				} else {
+					$poster = 'assets/images/movie_poster/'.$movie['poster'];
+				} ?>
+				<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
+				<?php } ?>
+			</ul>
+			
       </div>
    </div>
  </div>

@@ -40,7 +40,7 @@
 									if(preg_match($reg_exUrl, $text, $url)) {
 										$poster = $url[0];
 									} else {
-										$poster = 'images/movie_poster/'.$movie_info['poster'];
+										$poster = 'assets/images/movie_poster/'.$movie_info['poster'];
 									} 
 								?>
 									
@@ -132,7 +132,7 @@
 						if(preg_match($reg_exUrl, $text, $url)) {
 							$poster = $url[0];
 						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
+							$poster = 'assets/images/movie_poster/'.$movie['poster'];
 						} ?>
 						<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
                         <?php } ?>
@@ -188,7 +188,7 @@
 									if(preg_match($reg_exUrl, $text, $url)) {
 										$poster = $url[0];
 									} else {
-										$poster = 'images/movie_poster/'.$movie_info['poster'];
+										$poster = 'assets/images/movie_poster/'.$movie_info['poster'];
 									} 
 								?>
 									
@@ -280,7 +280,7 @@
 						if(preg_match($reg_exUrl, $text, $url)) {
 							$poster = $url[0];
 						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
+							$poster = 'assets/images/movie_poster/'.$movie['poster'];
 						} ?>
 						<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
                         <?php } ?>
@@ -332,7 +332,7 @@
 									if(preg_match($reg_exUrl, $text, $url)) {
 										$poster = $url[0];
 									} else {
-										$poster = 'images/movie_poster/'.$movie_info['poster'];
+										$poster = 'assets/images/movie_poster/'.$movie_info['poster'];
 									} 
 								?>
 									
@@ -458,7 +458,7 @@
 						if(preg_match($reg_exUrl, $text, $url)) {
 							$poster = $url[0];
 						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
+							$poster = 'assets//movie_poster/'.$movie['poster'];
 						} ?>
 						<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
                         <?php } ?>
@@ -538,7 +538,7 @@
 						if(preg_match($reg_exUrl, $text, $url)) {
 							$poster = $url[0];
 						} else {
-							$poster = 'images/movie_poster/'.$movie['poster'];
+							$poster = 'assets/images/movie_poster/'.$movie['poster'];
 						} ?>
 						<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
                         <?php } ?>

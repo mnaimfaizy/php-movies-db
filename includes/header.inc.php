@@ -14,154 +14,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Movie_store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-<link rel="manifest" href="favicon/manifest.json">
+<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="assets/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="assets/favicon/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+<meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="Admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="Admin/css/font-awesome.css" rel="stylesheet">
-<link href="css/search_style.css" rel="stylesheet">
-
-<!-- start plugins -->
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="assets/css/search_style.css" rel="stylesheet">
 
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<script src="js/responsiveslides.min.js"></script>
+
 <!-- Magnific Popup core CSS file -->
-<link rel="stylesheet" href="Admin/assets/Magnific-Popup-master/dist/magnific-popup.css"> 
-
-<!-- Magnific Popup core JS file -->
-<script src="Admin/assets/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script>
-    $(function () {
-      $("#slider").responsiveSlides({
-      	auto: true,
-      	nav: true,
-      	speed: 500,
-        namespace: "callbacks",
-        pager: true,
-      });
-    });
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-        // Validate comment_form form
-		$("#comment_form").validate({
-		
-			rules: {
-				name: {
-					required: true,
-					minlenght: 4
-				},
-				email: {
-					required: true,
-					email: true
-				},
-				
-				message: {
-					required: true,
-					minlenght: 10
-				}
-				
-			},
-			messages: {
-				name: {
-					required: "Name is required! Please enter valid name.",
-					minlenght: "Name must be grater than 4 characters."
-				},
-				email: {
-					required: "Email is required! Please enter valid email address.",
-					email: "Please provide valid email address."
-				},
-				
-				message: {
-					required: "Message is required! Please enter valid message.",
-					minlenght: "Message must be grater than 10 characters."
-				}
-			},
-			highlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').addClass('has-error');
-				$(element).parents('.form-group').addClass('has-error');
-			},
-			unhighlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').removeClass('has-error');
-				$(element).parents('.input-group').addClass('has-success');
-				$(element).parents('.form-group').removeClass('has-error');
-				$(element).parents('.form-group').addClass('has-success');
-			}
-		});
-
-    });
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-        
-		// Validate contact_form form
-		$("#contact_form").validate({
-		
-			rules: {
-				name: {
-					required: true,
-					minlenght: 4
-				},
-				email: {
-					required: true,
-					email: true
-				},
-				subject: "required",
-				message: {
-					required: true,
-					minlenght: 10
-				}
-				
-			},
-			messages: {
-				name: {
-					required: "Name is required! Please enter valid name.",
-					minlenght: "Name must be grater than 4 characters."
-				},
-				email: {
-					required: "Email is required! Please enter valid email address.",
-					email: "Please provide valid email address."
-				},
-				subject: "Subject is required! Please enter valid subject.",
-				message: {
-					required: "Message is required! Please enter valid message.",
-					minlenght: "Message must be grater than 10 characters."
-				}
-			},
-			highlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').addClass('has-error');
-				$(element).parents('.form-group').addClass('has-error');
-			},
-			unhighlight:function(element, errorClass, validClass) {
-				$(element).parents('.input-group').removeClass('has-error');
-				$(element).parents('.input-group').addClass('has-success');
-				$(element).parents('.form-group').removeClass('has-error');
-				$(element).parents('.form-group').addClass('has-success');
-			}
-		});
-		
-		
-    });
-</script> 
+<link rel="stylesheet" href="assets/css/magnific-popup.css"> 
 
 <style type="text/css">
       /**
@@ -206,32 +84,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
     </style>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-</script>
-<script type="text/javascript">
-      $(document).ready(function() {
-        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-          disableOn: 700,
-          type: 'iframe',
-          mainClass: 'mfp-fade',
-          removalDelay: 160,
-          preloader: false,
-
-          fixedContentPos: false
-        });
-      });
-    </script>
-
-
 </head>
 <body>
 <div class="container">
 	<div class="container_wrap">
 		<div class="header_top">
-		    <div class="col-sm-4 logo"><a href="index.php"><img src="images/logo.png" alt=""/></a></div>
+		    <div class="col-sm-4 logo"><a href="index.php"><img src="assets/images/logo.png" alt=""/></a></div>
 		    <div class="col-sm-5 nav">
 			  <ul>
 				 <li class="col-sm-1"> <span class="simptip-position-bottom simptip-movable" data-tooltip="contact"><a href="contact.php" style="background:none;"> <i class="fa fa-comments-o fa-2x fa-pull-right"></i> </a></span></li>

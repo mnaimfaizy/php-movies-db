@@ -23,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 	<div class="container_wrap">
 		<div class="header_top">
-		    <div class="col-sm-3 logo"><a href="index.html"><img src="images/logo.png" alt=""/></a></div>
+		    <div class="col-sm-3 logo"><a href="index.html"><img src="assets/images/logo.png" alt=""/></a></div>
 		    <div class="col-sm-6 nav">
 			  <ul>
 				 <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="comic"><a href="movie.php"> </a></span></li>
@@ -36,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-sm-3 header_right">
 			   <ul class="header_right_box">
-				 <li><img src="images/p1.png" alt=""/></li>
+				 <li><img src="assets/images/p1.png" alt=""/></li>
 				 <li><p><a href="login.html">Carol Varois</a></p></li>
 				 <li class="last"><i class="edit"> </i></li>
 				 <div class="clearfix"> </div>
@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="gp-container">
             <div class="footer-widget footer-1">
             	<div class="wpb_wrapper">
-					<img src="images/f_logo.png" alt=""/>
+					<img src="assets/images/f_logo.png" alt=""/>
 				</div> 
 	          <br>
 	          <p>It is a long established fact that a reader will be distracted by the readable content of a page.</p>

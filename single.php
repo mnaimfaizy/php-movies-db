@@ -25,7 +25,7 @@
 		if(preg_match($reg_exUrl, $text, $url)) {
 			$poster = $url[0];
 		} else {
-			$poster = 'images/movie_poster/'.$movie_info['poster'];
+			$poster = 'assets/images/movie_poster/'.$movie_info['poster'];
 		}
 		$duration = $movie_info['duration'];
 		$imdb_link = $movie_info['imdb_link'];
@@ -151,7 +151,7 @@
 								$result = $database->query($sql);
 								while($comment = $database->fetch_array($result)) { ?>
                             <li>
-					            <div class="preview"><a href="#"><img src="images/Woman_Man_Avatar_45x45.png" class="img-responsive" alt=""></a></div>
+					            <div class="preview"><a href="#"><img src="assets/images/Woman_Man_Avatar_45x45.png" class="img-responsive" alt=""></a></div>
 					            <div class="data">
 					                <div class="title"><?php echo $comment['name']; ?>  /  <?php echo date("d - M - Y, h:i:s", $comment['date']); ?> </div>
 					                <p><?php echo $comment['message']; ?></p>
@@ -183,7 +183,7 @@
 							if(preg_match($reg_exUrl, $text, $url)) {
 								$poster = $url[0];
 							} else {
-								$poster = 'images/movie_poster/'.$movie['poster'];
+								$poster = 'assets/images/movie_poster/'.$movie['poster'];
 							}
 						} 
 						?>

@@ -31,7 +31,7 @@
 									if(preg_match($reg_exUrl, $text, $url)) {
 										$poster = $url[0];
 									} else {
-										$poster = 'images/movie_poster/'.$movie_info['poster'];
+										$poster = 'assets/images/movie_poster/'.$movie_info['poster'];
 									} 
 								?>
 									
