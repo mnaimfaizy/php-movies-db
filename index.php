@@ -1,22 +1,6 @@
 <?php include 'includes/header.inc.php'; ?>
-<?php
-	// 1. the current page number ($current_page)
-	$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
-	
-	// 2. records per page ($per_page)
-	$per_page = 50;
-	
-	// 3. total record count ($total_count)
-	$sql = "SELECT COUNT(*) AS total FROM movie_table";
-	$tot_count = $database->query($sql);
-	$total = $database->fetch_array($tot_count);
-	$total_count = $total['total'];
-	
-	@$pagination = new Pagination($page, $per_page, $total_count);
-	
-?>
 
-	      <div class="slider">
+	<div class="slider">
 	   <div class="callbacks_container">
 	      <ul class="rslides" id="slider">
 	        <li><img src="assets/images/banner.jpg" class="img-responsive" alt=""/>
@@ -37,13 +21,6 @@
 								if($database->num_rows($query_result) > 0) { echo $movies_total['total_movies']; } else {
 									echo ' 0 '; }
 							?></span></li>
-			    			<li>TV Series <span class="m_1">&nbsp;&nbsp;&nbsp; <?php 
-								/*$query = "SELECT COUNT(*) AS total_tv FROM tv_table";
-								$query_result = $database->query($query);
-								$movies_total = $database->fetch_array($query_result);
-								if($database->num_rows($query_result) > 0) { echo $movies_total['total_tv']; } else {
-									echo ' 0 '; }*/
-							?> </span></li>
 			    			<li>Actors <span class="m_1">&nbsp;&nbsp;&nbsp; <?php 
 								$query = "SELECT COUNT(*) AS total_actors FROM actors_table";
 								$query_result = $database->query($query);
@@ -99,29 +76,12 @@
 					<div id="pagination-result">
 						<input type="hidden" name="rowcount" id="rowcount" />
 					</div>
-            </div>
-			<div class="clearfix"> </div>
+            	</div>
+				<div class="clearfix"> </div>
 		</div>      
         
         	<h1 class="recent">Latest Uploaded Movies</h3>
-			<ul id="flexiselDemo3">
-				<?php $sql = "SELECT * FROM movie_table WHERE status='Active' ORDER BY movie_id DESC LIMIT 10";
-				//$sql = "SELECT * FROM movie_table ORDER BY movie_id DESC LIMIT 12";
-				$result = $database->query($sql);
-				while($movie = $database->fetch_array($result)) { 
-				// The Regular Express filter
-				$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
-				// The text you want to filter goes here. 
-				$text = $movie['poster'];
-				// Check if there is a url in the text
-				if(preg_match($reg_exUrl, $text, $url)) {
-					$poster = $url[0];
-				} else {
-					$poster = 'assets/images/movie_poster/'.$movie['poster'];
-				} ?>
-				<li><a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>"><img src="<?php echo $poster; ?>" class="img-responsive" style="width:269px; height:300px;"/><div class="grid-flex"><?php echo $movie['movie_title']; ?></a><p><?php echo $movie['release_date']; ?> | <?php echo '('.$movie['year'].')'; ?></p></div></li>
-				<?php } ?>
-			</ul>
+			<?php include('includes/latest_uploaded_movies.php'); ?>  
 			
       </div>
    </div>

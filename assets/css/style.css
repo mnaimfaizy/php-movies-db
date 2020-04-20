@@ -851,6 +851,7 @@ float: left;
 width: 50%;
 border: none;
 position: relative;
+padding-right: 10px;
 }
 
 .movie-test .movie-beta__link:after {

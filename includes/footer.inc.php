@@ -208,6 +208,72 @@
 			}
 		}
 		getresult("ajax/loadMovies.php");
+	<?php } elseif($page_name === 'movie.php' && empty($_GET)) { ?>
+		function getresult(url) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val()},
+				beforeSend: function(){$("#overlay").show();},
+				success: function(data){
+					$("#pagination-result").html(data);
+					setInterval(function() {$("#overlay").hide(); },2000);
+				},
+				error: function() 
+				{} 	        
+			});
+
+		}
+		function changePagination(option) {
+			if(option!= "") {
+				getresult("ajax/loadAllMovies.php");
+			}
+		}
+		getresult("ajax/loadAllMovies.php");
+	<?php } elseif($page_name === 'movie.php' && isset($_GET['year'])) { ?>
+		function getresult(url) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val(),year:<?php echo $_GET['year']; ?>},
+				beforeSend: function(){$("#overlay").show();},
+				success: function(data){
+					$("#pagination-result").html(data);
+					setInterval(function() {$("#overlay").hide(); },2000);
+				},
+				error: function() 
+				{} 	        
+			});
+
+		}
+		function changePagination(option) {
+			if(option!= "") {
+				getresult("ajax/loadMoviesByYear.php");
+			}
+		}
+		getresult("ajax/loadMoviesByYear.php");
+	<?php } elseif($page_name === 'movie.php' && isset($_GET['genre'])) { ?>
+		function getresult(url) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val(),genre:'<?php echo $_GET['genre']; ?>'},
+				beforeSend: function(){$("#overlay").show();},
+				success: function(data){
+					$("#pagination-result").html(data);
+					setInterval(function() {$("#overlay").hide(); },2000);
+				},
+				error: function() 
+				{} 	        
+			});
+
+		}
+		function changePagination(option) {
+			if(option!= "") {
+				getresult("ajax/loadMoviesByGenre.php");
+			}
+		}
+		getresult("ajax/loadMoviesByGenre.php");
 	<?php } ?>
 </script>
 
@@ -238,6 +304,6 @@
 	
 });
 </script>
-<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+<script type="text/javascript" src="assets/js/jquery.flexisel.js"></script>
 </body>
 </html>
