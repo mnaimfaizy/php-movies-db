@@ -296,6 +296,28 @@
 			}
 		}
 		getresult("ajax/loadMoviesByTrailer.php");
+	<?php } elseif($page_name === 'search.php' && $_GET['search_query']) { ?>
+		function getresult(url) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val(),search_query:"<?php echo @$_GET['search_query']; ?>"},
+				beforeSend: function(){$("#overlay").show();},
+				success: function(data){
+					$("#pagination-result").html(data);
+					setInterval(function() {$("#overlay").hide(); },2000);
+				},
+				error: function() 
+				{} 	        
+			});
+
+		}
+		function changePagination(option) {
+			if(option!= "") {
+				getresult("ajax/loadSearchedMovies.php");
+			}
+		}
+		getresult("ajax/loadSearchedMovies.php");
 	<?php } ?>
 </script>
 
