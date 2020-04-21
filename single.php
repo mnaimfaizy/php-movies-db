@@ -101,7 +101,14 @@
 									<?php } ?>
 							</p>
                         	<p class="movie_option"><strong>Release date: </strong><?php echo $release_date; ?></p>
-                        	<p class="movie_option"><strong>Director: </strong><a href="#"><?php echo $directors; ?> </a></p>
+							<p class="movie_option"><strong>Director: </strong>
+								<?php $dir = explode(', ', $directors);
+								for($i = 0; $i < count($dir); $i++) {  ?>
+								<a href="actor_details.php?actor_name=<?php echo urlencode($dir[$i]); ?>" target="_blank">
+									<?php echo $dir[$i]; ?> 
+								</a> |  
+								<?php } ?>
+							</p>
                         	<p class="movie_option"><strong>Actors: </strong>
                             <?php // Find actors of this movie
 							$sql = "SELECT actor_id FROM movie_actors_table WHERE movie_id=$movie_id";
