@@ -136,7 +136,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <li class="col-sm-1"> <span class="simptip-position-bottom simptip-movable" data-tooltip="contact"><a href="contact.php" style="background:none;"> <i class="fa fa-comments-o fa-2x fa-pull-right"></i> </a></span></li>
 				 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="movie"><a href="movie.php" style="background:none;"> <i class="fa fa-film fa-2x fa-pull-right"></i> </a> </span></li>
 				 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="trailers"><a href="trailers.php" style="background:none;"> <i class="fa fa-youtube-play fa-2x fa-pull-right"></i> </a></span></li>
-				 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="tv"><a href="tv.php" style="background:none;"> <i class="fa fa-desktop fa-2x fa-pull-right"></i> </a></span></li>
 				<li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="search"><a href="search.php" style="background:none;"> <i class="fa fa-search fa-2x fa-pull-right"></i> </a></span></li>			
 			 </ul>
 			</div>
