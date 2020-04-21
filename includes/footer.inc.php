@@ -274,6 +274,28 @@
 			}
 		}
 		getresult("ajax/loadMoviesByGenre.php");
+	<?php } elseif($page_name === 'trailers.php') { ?>
+		function getresult(url) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val()},
+				beforeSend: function(){$("#overlay").show();},
+				success: function(data){
+					$("#pagination-result").html(data);
+					setInterval(function() {$("#overlay").hide(); },2000);
+				},
+				error: function() 
+				{} 	        
+			});
+
+		}
+		function changePagination(option) {
+			if(option!= "") {
+				getresult("ajax/loadMoviesByTrailer.php");
+			}
+		}
+		getresult("ajax/loadMoviesByTrailer.php");
 	<?php } ?>
 </script>
 
