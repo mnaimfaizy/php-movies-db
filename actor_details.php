@@ -1,24 +1,29 @@
 <?php include 'includes/header.inc.php'; ?>
 <?php 
+	// You must genreate a free token from www.myapifilms and create a php file called token.php
+	// Then create a constant variable such as:
+	// define('TOKEN', 'yourTokenHere');
+	@include('token.php');
+	
 	error_reporting(E_ALL & ~E_WARNING);
 	// Retrive data from the movie table according to the selected movie id.
 	if(isset($_GET['actor_name'])) {
 		$actor_name = urlencode($_GET['actor_name']);
-		$url = "http://www.myapifilms.com/name?name=$actor_name&actorActress=1&bornDied=1&filmography=1&salary=1&format=XML";
+		$url = "http://www.myapifilms.com/imdb/idIMDB?name=$actor_name&actorActress=1&bornDied=1&filmography=1&salary=1&format=xml&token=".TOKEN;
 		
 		$result = xml2array($url);
 		foreach($result as $result1) {
-			foreach($result1 as $result2) {
-				$actorActress = $result2['actorActress'];
-				$bio = $result2['bio'];
-				$birthname = $result2['birthName'];
-				$dateOfBirth = $result2['dateOfBirth'];
-				$height = $result2['height'];
-				$idIMDB = $result2['idIMDB'];
-				$name = $result2['name'];
-				$placeOfBirth = $result2['placeOfBirth'];
-				$photo = $result2['urlPhoto'];
-				$born = $result2['born'];
+			foreach($result1['data'] as $result2) {
+				@$actorActress = $result2['actorActress'];
+				@$bio = $result2['bio'];
+				@$birthname = $result2['birthName'];
+				@$dateOfBirth = $result2['dateOfBirth'];
+				@$height = $result2['height'];
+				@$idIMDB = $result2['idIMDB'];
+				@$name = $result2['name'];
+				@$placeOfBirth = $result2['placeOfBirth'];
+				@$photo = $result2['urlPhoto'];
+				@$born = $result2['born'];
 				@$died = $result2['died'];
 				@$filmography = $result2['filmographies'];
 				@$salary = $result2['salaries'];
@@ -107,7 +112,7 @@
 												foreach($film2 as $film3) {
 													$imdb_id = $film3['IMDBId'];
 													$title = $film3['title'];
-													$year = $film3['year'];
+													@$year = $film3['year'];
 													echo '<p class="movie_option"> <strong><a href="http://www.imdb.com/title/'.$imdb_id.'/" target="_blank"> '.$title.' </a></strong> ('.$year.') </p>';
 												}
 											}
