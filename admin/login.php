@@ -61,49 +61,77 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- jQuery -->
-<script src="js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
 </head>
-<body id="login">
-  <div class="login-logo">
-    <a href="index.php"><img src="images/logo.png" alt=""/></a>
-    
-  </div>
-  <?php if(isset($message) && $message == true) { ?>
-  	<div class="col-md-4"></div>
-    <div class="col-md-4">
-    	<div class="alert alert-error red1">
-            <button class="close" data-dismiss="alert"></button>
-            <strong>Error!</strong> The username OR password is incorret.
-        </div>
-    </div>
-    <div class="col-md-4"></div>
+<body class="hold-transition login-page">
+
+<div class="login-box">
+
+	<?php if(isset($message) && $message == true) { ?>
+
+		<div class="alert alert-error">
+			<button class="close" data-dismiss="alert"></button>
+			<strong>Error!</strong> The username OR password is incorret.
+		</div>
+
     <?php } ?>
-  <h2 class="form-heading">login</h2>
-  <div class="app-cam">
-	  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form" name="login_form">
-		<input type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" name="username" id="username">
-		<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" name="password" id="password">
-		<div class="submit"><input type="submit" name="submit" id="submit" value="Login"></div>
-		<ul class="new">
-			<li class="new_left"><p><a href="#">Forgot Password ?</a></p></li>
-			<div class="clearfix"></div>
-		</ul>
-	</form>
+
+  <div class="login-logo">
+    <a href="../../index2.html"><img src="assets/images/logo.png" alt=""/></a>
   </div>
-   <div class="copy_layout login">
-      <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-   </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form" name="login_form">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">&nbsp;</div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" name="submit" id="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+   	<!-- jQuery -->
+	<script src="assets//plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="assets/js/adminlte.min.js"></script>
+
 </body>
 </html>

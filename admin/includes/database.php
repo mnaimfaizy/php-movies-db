@@ -14,7 +14,7 @@ class MySQLDatabase {
 	}
 	
 	public function open_connection() {
-		$this->connection = mysqli_connect('localhost', 'root', '', 'mnf_movies');
+		$this->connection = mysqli_connect('localhost', 'root', '', 'php_movies_db');
 		if(!$this->connection) {
 			die("Database connection failed: " . mysqli_error());	
 		}
