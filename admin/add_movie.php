@@ -57,7 +57,7 @@
 	if(isset($_POST['add_api_movie'])) {
 		$imdb_id = $_POST['imdb_id'];
 		//$imdb_id = 'tt0460946';
-		$url = "http://www.omdbapi.com/?i=$imdb_id&plot=full&r=xml";
+		$url = "http://omdbapi.com/?i=$imdb_id&apikey=2db3e567&plot=full&r=xml";
 		
 		$result = xml2array($url);
 		$date_added = time();
@@ -98,7 +98,7 @@
 						echo '<script type="text/javascript"> alert("$title already exists in database"); </script>';
 					} else {
 						if(!empty($result2['poster'])) {
-						$img = "../images/movie_poster/".$result2['imdbID'].".jpg";
+						$img = "../assets/images/movie_poster/".$result2['imdbID'].".jpg";
 						
 						$image = file_get_contents($result2['poster']);
 						$poster = $database->escape_value(trim($result2['imdbID'])).'.jpg';
@@ -109,8 +109,8 @@
 						} else {
 							$poster = null;
 						}
-					$sql = "INSERT INTO `movie_table`(`movie_title`, `duration`, `country`, `year`, `release_date`, `director`, `rating`, `movie_desc`, `imdb_link`, `status`, `poster`, `date_added`) 
-		VALUES ('$title', '$runtime','$country','$year','$released','$director','$rating','$description', '$imdbID', '$status', '$poster', $date_added)";
+					$sql = "INSERT INTO `movie_table`(`movie_title`, `duration`, `country`, `year`, `release_date`, `director`, `rating`, `movie_desc`, `trailer`, `imdb_link`, `status`, `poster`, `date_added`) 
+		VALUES ('$title', '$runtime','$country','$year','$released','$director','$rating','$description', '', '$imdbID', '$status', '$poster', $date_added)";
 					
 					if($database->query($sql)) {
 						// Add actor to movie_actor_table along with his/her movie
@@ -257,7 +257,7 @@
 
 								<?php if(isset($_POST['api_movie'])) { 
 										$title = urlencode($_POST['movie_title']);
-										$url = "http://www.omdbapi.com/?s=$title&plot=full&r=xml";
+										$url = "http://omdbapi.com/?s=$title&apikey=2db3e567&plot=full&r=xml";
 										//echo $url = "http://www.omdbapi.com/?i=$title&plot=full&r=xml"; ?>
 									<div class="table-responsive">
 									<table class="table">
@@ -279,38 +279,38 @@
 									foreach($result as $res) {
 										foreach($res as $res1) {
 											foreach($res1 as $res2) {
-												if(isset($res2['Title'], $res2['Year'], $res2['Type'], $res2['imdbID'])) {
-													$title = $database->escape_value($res2['Title']);
-													$imdb_id = $res2['imdbID'];
-													$sql = "SELECT COUNT(*) AS total FROM movie_table WHERE movie_title LIKE '%$title%' AND imdb_link='$imdb_id'";
-													$sql_result = $database->query($sql);
-													$total = $database->fetch_array($sql_result);
-													if($total['total'] > 0) {
-														echo '<tr style="background-color: #d6d6d6;">';
-													} else {
-														echo '<tr>';
-													}
-													echo '<td> '.$no++.' </td>';
-													echo '<td> '. $res2['Title'] .' </td>';
-													echo '<td> '. $res2['Year'] .' </td>';
-													echo '<td> '. $res2['Type'] .' </td>';
-													echo '<td> '. $res2['imdbID'] .' </td>';
-													echo '<td> ';
-													
-													if($total['total'] > 0) {
-														// Do nothing
-													} else {
-													echo '<form action="add_movie.php" method="post">
-																<input type="hidden" name="imdb_id" id="imdb_id" value="'.$res2['imdbID'] .'" />
+                                                if (isset($res2['title'], $res2['year'], $res2['type'], $res2['imdbID'])) {
+                                                        $title = $database->escape_value($res2['title']);
+                                                        $imdb_id = $res2['imdbID'];
+                                                        $sql = "SELECT COUNT(*) AS total FROM movie_table WHERE movie_title LIKE '%$title%' AND imdb_link='$imdb_id'";
+                                                        $sql_result = $database->query($sql);
+                                                        $total = $database->fetch_array($sql_result);
+                                                        if ($total['total'] > 0) {
+                                                            echo '<tr style="background-color: #d6d6d6;">';
+                                                        } else {
+                                                            echo '<tr>';
+                                                        }
+                                                        echo '<td> ' . $no++ . ' </td>';
+                                                        echo '<td> ' . $res2['title'] . ' </td>';
+                                                        echo '<td> ' . $res2['year'] . ' </td>';
+                                                        echo '<td> ' . $res2['type'] . ' </td>';
+                                                        echo '<td> ' . $res2['imdbID'] . ' </td>';
+                                                        echo '<td> ';
+
+                                                        if ($total['total'] > 0) {
+                                                            // Do nothing
+                                                        } else {
+                                                            echo '<form action="add_movie.php" method="post">
+																<input type="hidden" name="imdb_id" id="imdb_id" value="' . $res2['imdbID'] . '" />
 																<input type="submit" name="add_api_movie" id="add_api_movie" value="Save Info" class="btn btn-sm btn-success" />
 															</form>
 															<br />';
-													}
-													echo '<a href="view_details.php?imdb_id='.$res2['imdbID'].'" class="btn btn-sm btn-info" target="_blank"> View Details </a>
+                                                        }
+                                                        echo '<a href="view_details.php?imdb_id=' . $res2['imdbID'] . '" class="btn btn-sm btn-info" target="_blank"> View Details </a>
 													</td>';
-													echo '</tr>';	
-												} 
-											}
+                                                        echo '</tr>';
+                                                    }
+                                            }
 										}
 									} ?>
 									

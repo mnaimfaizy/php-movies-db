@@ -35,32 +35,35 @@ if($pagination_setting == "prev-next") {
 
 
 $output = '';
-foreach($faq as $movie) {
-	// The Regular Express filter
-	$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
-	// The text you want to filter goes here. 
-	$text = $movie['poster'];
-	// Check if there is a url in the text
-	if(preg_match($reg_exUrl, $text, $url)) {
-		$poster = $url[0];
-	} else {
-		$poster = 'assets/images/movie_poster/'.$movie['poster'];
-	}
+if(!empty($faq)) {
+	foreach($faq as $movie) {
+		// The Regular Express filter
+		$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
+		// The text you want to filter goes here.
+		$text = $movie['poster'];
+		// Check if there is a url in the text
+		if(preg_match($reg_exUrl, $text, $url)) {
+			$poster = $url[0];
+		} else {
+			$poster = 'assets/images/movie_poster/'.$movie['poster'];
+		}
 
-	$output .= '<div class="col-md-3" style="margin-bottom: 20px;">';
-	$output .= '<a href="single.php?movie_id='.$movie['movie_id'].'" title="'.$movie['movie_title'].'">';
-	$output .= '<div class="grid_2">';
-	$output .= '<img src="'.$poster.'" style="width:250px; height:229px;" class="img-responsive" alt="'.$movie['movie_title'].'"/>';
-	$output .= '<div class="caption1">';
-	$output .= '<ul class="list_3">';
-	$output .= '<li><i class="icon5"> </i><p>'.$movie['rating'].'</p></li>';
-	$output .= '</ul>';
-	$output .= '<i class="icon4"> </i>';
-	$output .= '<p class="m_3">'.$movie['movie_title'].'</p>';
-	$output .= '</div>';
-   	$output .= '</div></a>';
-	$output .= '</div>';
+		$output .= '<div class="col-md-3" style="margin-bottom: 20px;">';
+		$output .= '<a href="single.php?movie_id='.$movie['movie_id'].'" title="'.$movie['movie_title'].'">';
+		$output .= '<div class="grid_2">';
+		$output .= '<img src="'.$poster.'" style="width:250px; height:229px;" class="img-responsive" alt="'.$movie['movie_title'].'"/>';
+		$output .= '<div class="caption1">';
+		$output .= '<ul class="list_3">';
+		$output .= '<li><i class="icon5"> </i><p>'.$movie['rating'].'</p></li>';
+		$output .= '</ul>';
+		$output .= '<i class="icon4"> </i>';
+		$output .= '<p class="m_3">'.$movie['movie_title'].'</p>';
+		$output .= '</div>';
+		$output .= '</div></a>';
+		$output .= '</div>';
+	}
 }
+
 if(!empty($perpageresult)) {
 $output .= '<div class="col-md-12"><div id="pagination">' . $perpageresult . '</div></div>';
 }

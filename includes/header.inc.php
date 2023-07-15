@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-sm-3 header_right">
 			   <ul class="header_right_box">
-				 <li><img src="images/mnf.png" class="img-circle" alt="Mohammad Naim Faizy"/></li>
+				 <li><img src="assets/images/mnf.png" class="img-circle" alt="Mohammad Naim Faizy"/></li>
 				 <li><p><a href="http://mnfprofile.com" target="_blank">M.Naim Faizy</a></p></li>
 				 <div class="clearfix"> </div>
 			   </ul>

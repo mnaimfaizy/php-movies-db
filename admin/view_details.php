@@ -9,7 +9,7 @@
     <body>
     <?php if(isset($_GET['imdb_id'])) { 
 		$imdb_id = urlencode($_GET['imdb_id']);
-		$url = "http://www.omdbapi.com/?i=$imdb_id&plot=full&r=xml";
+		$url = "http://omdbapi.com/?i=$imdb_id&apikey=2db3e567&plot=full&r=xml";
 		
 		$result = xml2array($url);
 		

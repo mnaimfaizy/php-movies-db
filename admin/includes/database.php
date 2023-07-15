@@ -6,15 +6,20 @@ class MySQLDatabase {
 	public $last_query;
 	private $magic_quotes_active;
 	private $real_escape_string;
-	
-	function __construct() {
-		$this->open_connection();
-		$this->magic_quotes_active = get_magic_quotes_gpc();
-		$this->real_escape_string = function_exists("mysqli_real_escape_string");	
-	}
+    private $host = '192.168.2.104';
+    private $user = 'root';
+    private $password = 'Kabul@123';
+    private $database = 'php_movies_db';
+    private $port = 33067;
+
+    function __construct() {
+        $this->open_connection();
+        $this->magic_quotes_active = (bool) ini_get('magic_quotes_gpc');
+        $this->real_escape_string = function_exists('mysqli_real_escape_string');
+    }
 	
 	public function open_connection() {
-		$this->connection = mysqli_connect('localhost', 'root', '', 'php_movies_db');
+		$this->connection = mysqli_connect($this->host, $this->user, $this->password, $this->database, $this->port);
 		if(!$this->connection) {
 			die("Database connection failed: " . mysqli_error());	
 		}
@@ -33,14 +38,15 @@ class MySQLDatabase {
 		$this->confirm_query($result);
 		return $result;
 	}
-	
-	private function confirm_query($result) {
-		if(!$result) {
-			$output = "Database query failed: " . mysqli_error() . "<br /><br />";
-			$output .= "Last SQL query: " . $this->last_query;
-			die($output);	
-		}
-	}
+
+    private function confirm_query($result) {
+        if (!$result) {
+            $output = "Database query failed: " . mysqli_error($this->connection) . "<br /><br />";
+            $output .= "Last SQL query: " . $this->last_query;
+            die($output);
+        }
+    }
+
 	
 	public function escape_value($value) {
 		
