@@ -182,7 +182,6 @@ This application integrates with the **OMDb API** (Open Movie Database) to fetch
   - Ratings (IMDb, Rotten Tomatoes, Metacritic)
   - Director, writer, actors
   - Runtime, release date
-  
 - **Search by Title**: Search for movies by title and select from results
 
 - **Manual Entry**: All fields can be manually entered/edited if you prefer not to use the API or if the API doesn't have the movie
@@ -194,7 +193,6 @@ This application integrates with the **OMDb API** (Open Movie Database) to fetch
    - Enter IMDb ID (e.g., `tt0111161` for The Shawshank Redemption)
    - Click "Fetch Details" button
    - Movie data will auto-populate
-   
 3. **Option 2 - Search by Title**:
    - Enter movie title in search field
    - Click "Search" button
@@ -209,6 +207,7 @@ This application integrates with the **OMDb API** (Open Movie Database) to fetch
 ### API Configuration
 
 The OMDb API key is currently hardcoded in:
+
 - `admin/add_movie.php` (Line 60, 264)
 - `admin/view_details.php` (Line 31)
 
@@ -260,6 +259,32 @@ For detailed documentation, please refer to:
 
 You can see a live demo of the application at: [https://php-movies-db.mnfprofile.com](https://php-movies-db.mnfprofile.com)
 
+## 📸 Screenshots
+
+### Frontend
+
+#### Home Page
+
+![Front Page](screenshots/front-page.png)
+_Modern Netflix-inspired homepage with hero slider and featured movies_
+
+#### Search Functionality
+
+![Search Page](screenshots/search-page.png)
+_Real-time AJAX search with responsive movie cards_
+
+### Admin Panel
+
+#### Admin Dashboard
+
+![Dashboard Page](screenshots/dashboard-page.png)
+_Clean AdminLTE-based dashboard for managing content_
+
+#### Add Movie Page
+
+![Add Movie Page](screenshots/add-movie-page.png)
+_Movie management with OMDb API integration for auto-fetching movie details_
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes:
@@ -296,6 +321,7 @@ The 2026 enhancements focused on creating a modern, Netflix-inspired interface w
 ---
 
 **Note**: This is an educational project. Make sure to follow security best practices if deploying to production, including:
+
 - Changing default database credentials
 - Obtaining your own OMDb API key
 - Enabling HTTPS
