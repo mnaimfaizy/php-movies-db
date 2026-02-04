@@ -255,10 +255,8 @@
 				url: url,
 				type: "GET",
 				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val()},
-				beforeSend: function(){$("#overlay").show();},
 				success: function(data){
 					$("#pagination-result").html(data);
-					setInterval(function() {$("#overlay").hide(); },2000);
 				},
 				error: function() 
 				{} 	        
@@ -277,10 +275,8 @@
 				url: url,
 				type: "GET",
 				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val(),year:<?php echo $_GET['year']; ?>},
-				beforeSend: function(){$("#overlay").show();},
 				success: function(data){
 					$("#pagination-result").html(data);
-					setInterval(function() {$("#overlay").hide(); },2000);
 				},
 				error: function() 
 				{} 	        
@@ -299,10 +295,8 @@
 				url: url,
 				type: "GET",
 				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val(),genre:'<?php echo $_GET['genre']; ?>'},
-				beforeSend: function(){$("#overlay").show();},
 				success: function(data){
 					$("#pagination-result").html(data);
-					setInterval(function() {$("#overlay").hide(); },2000);
 				},
 				error: function() 
 				{} 	        
@@ -321,10 +315,8 @@
 				url: url,
 				type: "GET",
 				data:  {rowcount:$("#rowcount").val(),"pagination_setting":$("#pagination-setting").val()},
-				beforeSend: function(){$("#overlay").show();},
 				success: function(data){
 					$("#pagination-result").html(data);
-					setInterval(function() {$("#overlay").hide(); },2000);
 				},
 				error: function() 
 				{} 	        
@@ -354,10 +346,8 @@
 				url: url,
 				type: "GET",
 				data: searchParams,
-				beforeSend: function(){$("#overlay").show();},
 				success: function(data){
 					$("#pagination-result").html(data);
-					setInterval(function() {$("#overlay").hide(); },2000);
 				},
 				error: function() 
 				{} 	        

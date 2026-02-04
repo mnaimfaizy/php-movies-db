@@ -155,7 +155,7 @@
   }
 
   function filterMoviesByGenre(genreId) {
-    showLoading();
+    // Removed loading spinner
     // This would integrate with existing AJAX functionality
     // For now, redirect to genre page
     setTimeout(() => {

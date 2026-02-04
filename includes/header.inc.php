@@ -137,8 +137,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		.answer{padding-top: 10px;}
 		#pagination{margin-top: 20px;padding-top: 30px;border-top: #F0F0F0 1px solid;}
 		.dot {padding: 10px 15px;background: transparent;border-right: #bccfd8 1px solid;}
-		#overlay {background-color: rgba(0, 0, 0, 0.6);z-index: 999;position: absolute;left: 0;top: 0;width: 100%;height: 100%;display: none;}
-		#overlay div {position:absolute;left:50%;top:50%;margin-top:-32px;margin-left:-32px;}
 		.page-content {padding: 20px;margin: 0 auto;}
 		.pagination-setting {padding:10px; margin:5px 0px 10px;border:#bccfd8  1px solid;color:#607d8b;}
 
@@ -169,7 +167,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body style="position: relative;">
-	<div id="overlay"><div><img src="assets/images/loading.gif" width="64px" height="64px"/></div></div>
 	
 	<!-- Modern Bootstrap 5 Navigation -->
 	<nav class="modern-navbar navbar navbar-expand-lg navbar-dark">

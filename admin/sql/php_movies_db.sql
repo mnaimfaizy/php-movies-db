@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 09:34 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.26
+-- Host: php_movies_db:3306
+-- Generation Time: Feb 04, 2026 at 08:16 AM
+-- Server version: 9.6.0
+-- PHP Version: 8.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `actors_table` (
-  `actor_id` int(20) NOT NULL,
+  `actor_id` int NOT NULL,
   `actor_name` varchar(200) NOT NULL,
-  `date_added` int(100) NOT NULL
+  `date_added` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1613,7 +1612,9 @@ INSERT INTO `actors_table` (`actor_id`, `actor_name`, `date_added`) VALUES
 (1571, 'Ken Adelman', 1442162403),
 (1572, 'John Ashcroft', 1442162403),
 (1573, 'Osama bin Laden', 1442162404),
-(1574, 'George Bush', 1442162404);
+(1574, 'George Bush', 1442162404),
+(1575, 'Sam Worthington', 1770188364),
+(1576, 'Zoe Saldaña', 1770188364);
 
 -- --------------------------------------------------------
 
@@ -1622,12 +1623,12 @@ INSERT INTO `actors_table` (`actor_id`, `actor_name`, `date_added`) VALUES
 --
 
 CREATE TABLE `comments` (
-  `comment_id` int(100) NOT NULL,
+  `comment_id` int NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(200) NOT NULL,
   `message` varchar(500) NOT NULL,
-  `date` int(100) NOT NULL,
-  `movie_id` int(10) NOT NULL
+  `date` int NOT NULL,
+  `movie_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1645,7 +1646,7 @@ INSERT INTO `comments` (`comment_id`, `name`, `email`, `message`, `date`, `movie
 --
 
 CREATE TABLE `country` (
-  `country_id` int(11) NOT NULL,
+  `country_id` int NOT NULL,
   `country` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1901,7 +1902,7 @@ INSERT INTO `country` (`country_id`, `country`) VALUES
 --
 
 CREATE TABLE `genre` (
-  `genre_id` int(11) NOT NULL,
+  `genre_id` int NOT NULL,
   `genre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1941,7 +1942,7 @@ INSERT INTO `genre` (`genre_id`, `genre`) VALUES
 -- (See below for the actual view)
 --
 CREATE TABLE `movies` (
-`movie_id` int(20)
+`movie_id` int
 ,`movie_title` varchar(200)
 ,`duration` varchar(100)
 ,`country` varchar(100)
@@ -1954,9 +1955,9 @@ CREATE TABLE `movies` (
 ,`imdb_link` varchar(200)
 ,`status` varchar(30)
 ,`poster` varchar(300)
-,`date_added` int(50)
-,`genre` mediumtext
-,`actors` mediumtext
+,`date_added` int
+,`genre` text
+,`actors` text
 );
 
 -- --------------------------------------------------------
@@ -1966,9 +1967,9 @@ CREATE TABLE `movies` (
 --
 
 CREATE TABLE `movie_actors_table` (
-  `m_a_id` int(20) NOT NULL,
-  `movie_id` int(20) NOT NULL,
-  `actor_id` int(20) NOT NULL
+  `m_a_id` int NOT NULL,
+  `movie_id` int NOT NULL,
+  `actor_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4455,7 +4456,10 @@ INSERT INTO `movie_actors_table` (`m_a_id`, `movie_id`, `actor_id`) VALUES
 (2581, 650, 625),
 (2582, 650, 465),
 (2583, 650, 567),
-(2584, 650, 1296);
+(2584, 650, 1296),
+(2585, 651, 1575),
+(2586, 651, 1576),
+(2587, 651, 733);
 
 -- --------------------------------------------------------
 
@@ -4464,9 +4468,9 @@ INSERT INTO `movie_actors_table` (`m_a_id`, `movie_id`, `actor_id`) VALUES
 --
 
 CREATE TABLE `movie_genre_table` (
-  `movie_genre_id` int(20) NOT NULL,
-  `movie_id` int(100) NOT NULL,
-  `genre_id` int(100) NOT NULL
+  `movie_genre_id` int NOT NULL,
+  `movie_id` int NOT NULL,
+  `genre_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -6099,7 +6103,10 @@ INSERT INTO `movie_genre_table` (`movie_genre_id`, `movie_id`, `genre_id`) VALUE
 (1701, 649, 21),
 (1702, 650, 1),
 (1703, 650, 2),
-(1704, 650, 5);
+(1704, 650, 5),
+(1705, 651, 3),
+(1706, 651, 1),
+(1707, 651, 2);
 
 -- --------------------------------------------------------
 
@@ -6108,7 +6115,7 @@ INSERT INTO `movie_genre_table` (`movie_genre_id`, `movie_id`, `genre_id`) VALUE
 --
 
 CREATE TABLE `movie_table` (
-  `movie_id` int(20) NOT NULL,
+  `movie_id` int NOT NULL,
   `movie_title` varchar(200) DEFAULT NULL,
   `duration` varchar(100) NOT NULL,
   `country` varchar(100) NOT NULL,
@@ -6121,7 +6128,7 @@ CREATE TABLE `movie_table` (
   `imdb_link` varchar(200) NOT NULL,
   `status` varchar(30) NOT NULL,
   `poster` varchar(300) NOT NULL,
-  `date_added` int(50) NOT NULL
+  `date_added` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -6756,7 +6763,8 @@ INSERT INTO `movie_table` (`movie_id`, `movie_title`, `duration`, `country`, `ye
 (647, 'War of the Worlds', '116 min', 'USA', '2005', '29 Jun 2005', 'Steven Spielberg', 6.5, 'Ray Ferrier (Cruise) is a divorced dockworker and less-than-perfect father. When his ex-wife and her new husband drop off his teenage son Robbie and young daughter Rachel for a rare weekend visit, a strange and powerful lightning storm suddenly touches down. What follows is the extraordinary battle for the future of humankind through the eyes of one American family fighting to survive it in this contemporary retelling of H.G. Wells seminal classic sci-fi thriller.', '', 'tt0407304', 'Active', 'tt0407304.jpg', 1442162231),
 (648, 'Wedding Crashers', '119 min', 'USA', '2005', '15 Jul 2005', 'David Dobkin', 7, 'Divorce mediators John Beckwith and Jeremy Grey are business partners and lifelong friends who share one truly unique springtime hobby--crashing weddings! Whatever the ethnicity of the wedding party--Jewish, Italian, Irish, Chinese, Hindu--the charismatic and charming duo always have clever back stories for inquisitive guests and inevitably become the hit of every reception, where they strictly adhere to their proven rules of wedding crashing to meet and pick up women aroused by the very thought of marriage. At the tail end of another successful season of toasting brides and grooms, Jeremy learns that the daughter of Treasury Secretary William Cleary and his wife, Kathleen, is getting married in what is sure to be the Washington D.C. social event of the year. After infiltrating the lavish affair, John and Jeremy quickly set their sights on two bridesmaids, Claire and Gloria Cleary. With the lavish reception in full swing, Jeremy works his game plan to perfection in seducing Gloria, but John\'s flirtation banter with Claire is unexpectedly impeded by her pompous, Ivy League boyfriend Sack. Having uncharacteristically fallen hard and fast for Claire, John convinces a resistant Jeremy to bend the crashing rules and accept an invitation to an extended weekend party at the Cleary family compound. Once at the palatial waterfront estate, John and Jeremy endure a multitude of comical mishaps at the hands of the dysfunctional members of the Cleary family, but also learn a few unexpected lessons about love and relationships.', '', 'tt0396269', 'Active', 'tt0396269.jpg', 1442162239),
 (649, 'Why We Fight', '98 min', 'USA, France, UK, Canada, Denmark', '2005', '01 Jan 2005', 'Eugene Jarecki', 8.1, 'He may have been the ultimate icon of 1950s conformity and postwar complacency, but Dwight D. Eisenhower was an iconoclast, visionary, and the Cassandra of the New World Order. Upon departing his presidency, Eisenhower issued a stern, cogent warning about the burgeoning &quot;military industrial complex,&quot; foretelling with ominous clarity the state of the world in 2004 with its incestuous entanglement of political, corporate, and Defense Department interests.', '', 'tt0436971', 'Active', 'tt0436971.jpg', 1442162401),
-(650, 'xXx: State of the Union', '101 min', 'USA', '2005', '29 Apr 2005', 'Lee Tamahori', 4.3, 'Agent Augustus Gibbons has selected an imprisoned former US Navy SEAL Darius Stone, a new agent in the XXX program, travels to Washington D.C., where they track a splinter faction of the U.S. military that attempts to overthrow the U.S. government and assassinate the President, led by Secretary of Defense and former 4-Star General George Deckert, Stone\'s former commanding officer whom he once led a mutiny against. But he\'s been targeted for assassination by a radical splinter group of dissenters deep within the United States government. The new XXX agent must uncover the insurgents from within. It is the nation\'s only hope to stop the first coup d\'etat in American history.', '', 'tt0329774', 'Active', 'tt0329774.jpg', 1442162409);
+(650, 'xXx: State of the Union', '101 min', 'USA', '2005', '29 Apr 2005', 'Lee Tamahori', 4.3, 'Agent Augustus Gibbons has selected an imprisoned former US Navy SEAL Darius Stone, a new agent in the XXX program, travels to Washington D.C., where they track a splinter faction of the U.S. military that attempts to overthrow the U.S. government and assassinate the President, led by Secretary of Defense and former 4-Star General George Deckert, Stone\'s former commanding officer whom he once led a mutiny against. But he\'s been targeted for assassination by a radical splinter group of dissenters deep within the United States government. The new XXX agent must uncover the insurgents from within. It is the nation\'s only hope to stop the first coup d\'etat in American history.', '', 'tt0329774', 'Active', 'tt0329774.jpg', 1442162409),
+(651, 'Avatar: Fire and Ash', '197 min', 'United States, Canada', '2025', '19 Dec 2025', 'James Cameron', 7.4, 'Sequel of Avatar 2 (2022). The plot is unknown.', 'https://www.youtube.com/watch?v=nb_fFj_0rq8&pp=ygUbYXZhdGFyIGZpcmUgYW5kIGFzaCB0cmFpbGVy', 'tt1757678', 'Active', 'tt1757678.jpg', 1770188364);
 
 -- --------------------------------------------------------
 
@@ -6765,7 +6773,7 @@ INSERT INTO `movie_table` (`movie_id`, `movie_title`, `duration`, `country`, `ye
 --
 
 CREATE TABLE `user` (
-  `id` int(10) NOT NULL,
+  `id` int NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(300) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
@@ -6779,7 +6787,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `gender`, `email`, `phone`) VALUES
-(1, 'admin', '2c17c6393771ee3048ae34d6b380c5ec', 'Mohammad Naim Faizy', 'male', 'mnaim.faizy@gmail.com', '0788103809');
+(1, 'admin', '0f8b20e074ca732d5e476ac2d4c135a5', 'Mohammad Naim Faizy', 'male', 'mnaim.faizy@gmail.com', '0788103809');
 
 -- --------------------------------------------------------
 
@@ -6788,7 +6796,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `name`, `gender`, `email`, `ph
 --
 
 CREATE TABLE `year` (
-  `year_id` int(11) NOT NULL,
+  `year_id` int NOT NULL,
   `year` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -6864,15 +6872,6 @@ INSERT INTO `year` (`year_id`, `year`) VALUES
 (65, '2014'),
 (66, '2015');
 
--- --------------------------------------------------------
-
---
--- Structure for view `movies`
---
-DROP TABLE IF EXISTS `movies`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `movies`  AS  select `m`.`movie_id` AS `movie_id`,`m`.`movie_title` AS `movie_title`,`m`.`duration` AS `duration`,`m`.`country` AS `country`,`m`.`year` AS `year`,`m`.`release_date` AS `release_date`,`m`.`director` AS `director`,`m`.`rating` AS `rating`,`m`.`movie_desc` AS `movie_desc`,`m`.`trailer` AS `trailer`,`m`.`imdb_link` AS `imdb_link`,`m`.`status` AS `status`,`m`.`poster` AS `poster`,`m`.`date_added` AS `date_added`,group_concat(distinct `g`.`genre` order by `g`.`genre` DESC separator ', ') AS `genre`,group_concat(distinct `ac`.`actor_name` order by `ac`.`actor_name` DESC separator ', ') AS `actors` from ((((`movie_table` `m` join `movie_genre_table` `mg` on(`m`.`movie_id` = `mg`.`movie_id`)) join `genre` `g` on(`mg`.`genre_id` = `g`.`genre_id`)) join `movie_actors_table` `mac` on(`m`.`movie_id` = `mac`.`movie_id`)) join `actors_table` `ac` on(`mac`.`actor_id` = `ac`.`actor_id`)) group by `m`.`movie_id`,`m`.`movie_title` ;
-
 --
 -- Indexes for dumped tables
 --
@@ -6939,55 +6938,64 @@ ALTER TABLE `year`
 -- AUTO_INCREMENT for table `actors_table`
 --
 ALTER TABLE `actors_table`
-  MODIFY `actor_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1575;
+  MODIFY `actor_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1577;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
+  MODIFY `country_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `genre_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `genre_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `movie_actors_table`
 --
 ALTER TABLE `movie_actors_table`
-  MODIFY `m_a_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2585;
+  MODIFY `m_a_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2588;
 
 --
 -- AUTO_INCREMENT for table `movie_genre_table`
 --
 ALTER TABLE `movie_genre_table`
-  MODIFY `movie_genre_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1705;
+  MODIFY `movie_genre_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1708;
 
 --
 -- AUTO_INCREMENT for table `movie_table`
 --
 ALTER TABLE `movie_table`
-  MODIFY `movie_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=651;
+  MODIFY `movie_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=652;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `year`
 --
 ALTER TABLE `year`
-  MODIFY `year_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `year_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `movies`
+--
+DROP TABLE IF EXISTS `movies`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `movies`  AS SELECT `m`.`movie_id` AS `movie_id`, `m`.`movie_title` AS `movie_title`, `m`.`duration` AS `duration`, `m`.`country` AS `country`, `m`.`year` AS `year`, `m`.`release_date` AS `release_date`, `m`.`director` AS `director`, `m`.`rating` AS `rating`, `m`.`movie_desc` AS `movie_desc`, `m`.`trailer` AS `trailer`, `m`.`imdb_link` AS `imdb_link`, `m`.`status` AS `status`, `m`.`poster` AS `poster`, `m`.`date_added` AS `date_added`, group_concat(distinct `g`.`genre` order by `g`.`genre` DESC separator ', ') AS `genre`, group_concat(distinct `ac`.`actor_name` order by `ac`.`actor_name` DESC separator ', ') AS `actors` FROM ((((`movie_table` `m` join `movie_genre_table` `mg` on((`m`.`movie_id` = `mg`.`movie_id`))) join `genre` `g` on((`mg`.`genre_id` = `g`.`genre_id`))) join `movie_actors_table` `mac` on((`m`.`movie_id` = `mac`.`movie_id`))) join `actors_table` `ac` on((`mac`.`actor_id` = `ac`.`actor_id`))) GROUP BY `m`.`movie_id`, `m`.`movie_title` ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,7 +1,7 @@
-<!-- Loading Spinner Overlay -->
-<div id="loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+<!-- Loading Spinner Overlay - DISABLED -->
+<!-- <div id="loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
     <div class="spinner" style="border:8px solid #f3f3f3; border-top:8px solid #e74c3c; border-radius:50%; width:60px; height:60px; animation:spin 1s linear infinite;"></div>
-</div>
+</div> -->
 
 <!-- Toast Notification Container -->
 <div id="toast-container" style="position:fixed; top:20px; right:20px; z-index:10000;"></div>
@@ -80,14 +80,14 @@
 </style>
 
 <script>
-// Loading spinner functions
-function showLoading() {
-    document.getElementById('loading-overlay').style.display = 'flex';
-}
+// Loading spinner functions - DISABLED
+// function showLoading() {
+//     document.getElementById('loading-overlay').style.display = 'flex';
+// }
 
-function hideLoading() {
-    document.getElementById('loading-overlay').style.display = 'none';
-}
+// function hideLoading() {
+//     document.getElementById('loading-overlay').style.display = 'none';
+// }
 
 // Toast notification function
 function showToast(message, type = 'info', duration = 3000) {
@@ -116,10 +116,10 @@ function showToast(message, type = 'info', duration = 3000) {
     }, duration);
 }
 
-// Auto-show loading on AJAX requests
-$(document).ajaxStart(function() {
-    showLoading();
-}).ajaxStop(function() {
-    hideLoading();
-});
+// Auto-show loading on AJAX requests - DISABLED
+// $(document).ajaxStart(function() {
+//     showLoading();
+// }).ajaxStop(function() {
+//     hideLoading();
+// });
 </script>

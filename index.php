@@ -154,35 +154,35 @@
                 }
                 ?>
                 <div class="movie-card">
-                    <a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>">
-                        <div class="movie-poster">
-                            <img src="<?php echo $poster; ?>" alt="<?php echo htmlspecialchars($movie['movie_title']); ?>" loading="lazy">
-                            <div class="movie-overlay">
-                                <div class="movie-actions">
-                                    <button class="btn-circle" title="Watch Now">
-                                        <i class="fas fa-play"></i>
-                                    </button>
-                                    <button class="btn-circle" title="More Info">
-                                        <i class="fas fa-info"></i>
-                                    </button>
-                                </div>
+                    <div class="movie-card-image">
+                        <img src="<?php echo $poster; ?>" alt="<?php echo htmlspecialchars($movie['movie_title']); ?>" loading="lazy">
+                        <?php if(!empty($movie['rating'])) { ?>
+                        <span class="movie-card-rating"><i class="fas fa-star"></i> <?php echo $movie['rating']; ?></span>
+                        <?php } ?>
+                        <div class="movie-card-overlay">
+                            <div class="movie-card-actions">
+                                <a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-play"></i> Watch
+                                </a>
+                                <a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>" class="btn btn-outline-light btn-sm">
+                                    <i class="fas fa-info-circle"></i> Info
+                                </a>
                             </div>
-                            <?php if(!empty($movie['rating'])) { ?>
-                            <div class="movie-rating">
-                                <i class="fas fa-star"></i> <?php echo $movie['rating']; ?>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">
+                            <a href="single.php?movie_id=<?php echo $movie['movie_id']; ?>" class="text-white text-decoration-none">
+                                <?php echo htmlspecialchars($movie['movie_title']); ?>
+                            </a>
+                        </h5>
+                        <div class="movie-card-meta">
+                            <span class="movie-card-year"><i class="far fa-calendar"></i> <?php echo !empty($movie['year']) ? $movie['year'] : 'N/A'; ?></span>
+                            <?php if(!empty($movie['genre'])) { ?>
+                            <span class="movie-card-genre"><?php echo $movie['genre']; ?></span>
                             <?php } ?>
                         </div>
-                        <div class="movie-info">
-                            <h3 class="movie-title"><?php echo htmlspecialchars($movie['movie_title']); ?></h3>
-                            <p class="movie-meta">
-                                <span class="year"><?php echo $movie['year']; ?></span>
-                                <?php if(!empty($movie['duration'])) { ?>
-                                <span class="duration"><?php echo $movie['duration']; ?></span>
-                                <?php } ?>
-                            </p>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             <?php } ?>
         </div>
