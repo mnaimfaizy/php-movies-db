@@ -6,11 +6,11 @@ class MySQLDatabase {
 	public $last_query;
 	private $magic_quotes_active;
 	private $real_escape_string;
-    private $host = '192.168.2.104';
-    private $user = 'root';
+    private $host = 'php_movies_db';
+    private $user = 'admin';
     private $password = 'Kabul@123';
     private $database = 'php_movies_db';
-    private $port = 33067;
+    private $port = 3306;
 
     function __construct() {
         $this->open_connection();
@@ -21,7 +21,7 @@ class MySQLDatabase {
 	public function open_connection() {
 		$this->connection = mysqli_connect($this->host, $this->user, $this->password, $this->database, $this->port);
 		if(!$this->connection) {
-			die("Database connection failed: " . mysqli_error());	
+			die("Database connection failed: " . mysqli_connect_error());	
 		}
 	}
 	

@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 services:
   php_movies_app:
     container_name: php_movies_app
@@ -25,8 +25,24 @@ services:
       MYSQL_PASSWORD: "Kabul@123"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./admin/sql/php_movies_db.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "33067:3306"
+    networks:
+      - php_movies_db_net
+
+  phpmyadmin:
+    container_name: php_movies_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    depends_on:
+      - php_movies_db
+    environment:
+      PMA_HOST: php_movies_db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: "Kabul@123"
+    ports:
+      - "8080:80"
     networks:
       - php_movies_db_net
 
