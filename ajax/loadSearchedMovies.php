@@ -36,36 +36,53 @@ if($pagination_setting == "prev-next") {
 
 $output = '';
 if(!empty($faq)) {
+	$output .= '<div class="movies-grid">'; // Start modern grid
+	
 	foreach($faq as $movie) {
 		// The Regular Express filter
 		$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
 		// The text you want to filter goes here.
-		$text = $movie['poster'];
+		$text = isset($movie['poster']) ? $movie['poster'] : '';
 		// Check if there is a url in the text
 		if(preg_match($reg_exUrl, $text, $url)) {
 			$poster = $url[0];
 		} else {
-			$poster = 'assets/images/movie_poster/'.$movie['poster'];
+			$poster = !empty($movie['poster']) ? 'assets/images/movie_poster/'.$movie['poster'] : 'assets/images/movie_poster/default.jpg';
 		}
 
-		$output .= '<div class="col-md-3" style="margin-bottom: 20px;">';
-		$output .= '<a href="single.php?movie_id='.$movie['movie_id'].'" title="'.$movie['movie_title'].'">';
-		$output .= '<div class="grid_2">';
-		$output .= '<img src="'.$poster.'" style="width:250px; height:229px;" class="img-responsive" alt="'.$movie['movie_title'].'"/>';
-		$output .= '<div class="caption1">';
-		$output .= '<ul class="list_3">';
-		$output .= '<li><i class="icon5"> </i><p>'.$movie['rating'].'</p></li>';
-		$output .= '</ul>';
-		$output .= '<i class="icon4"> </i>';
-		$output .= '<p class="m_3">'.$movie['movie_title'].'</p>';
-		$output .= '</div>';
-		$output .= '</div></a>';
+		// Modern Movie Card
+		$output .= '<div class="movie-card">';
+		$output .= '  <div class="movie-card-image">';
+		$output .= '    <img src="'.$poster.'" alt="'.htmlspecialchars($movie['movie_title']).'">';
+		$output .= '    <span class="movie-card-rating"><i class="fas fa-star"></i> '.$movie['rating'].'</span>';
+		$output .= '    <div class="movie-card-overlay">';
+		$output .= '      <div class="movie-card-actions">';
+		$output .= '        <a href="single.php?movie_id='.$movie['movie_id'].'" class="btn btn-primary btn-sm"><i class="fas fa-play"></i> Watch</a>';
+		$output .= '        <a href="single.php?movie_id='.$movie['movie_id'].'" class="btn btn-outline-light btn-sm"><i class="fas fa-info-circle"></i> Info</a>';
+		$output .= '      </div>';
+		$output .= '    </div>';
+		$output .= '  </div>';
+		$output .= '  <div class="movie-card-body">';
+		$output .= '    <h5 class="movie-card-title">';
+		$output .= '      <a href="single.php?movie_id='.$movie['movie_id'].'" class="text-white text-decoration-none">';
+		$output .= htmlspecialchars($movie['movie_title']);
+		$output .= '      </a>';
+		$output .= '    </h5>';
+		$output .= '    <div class="movie-card-meta">';
+		$output .= '      <span class="movie-card-year"><i class="far fa-calendar"></i> '.(!empty($movie['year']) ? $movie['year'] : 'N/A').'</span>';
+		$output .= '      <span class="movie-card-genre">'.(isset($movie['genre']) ? $movie['genre'] : '').'</span>';
+		$output .= '    </div>';
+		$output .= '  </div>';
 		$output .= '</div>';
 	}
+	
+	$output .= '</div>'; // End movies grid
+} else {
+	$output .= '<div class="empty-state"><i class="fas fa-search"></i><h4>No Results Found</h4><p>No movies found matching your search.</p></div>';
 }
 
 if(!empty($perpageresult)) {
-$output .= '<div class="col-md-12"><div id="pagination">' . $perpageresult . '</div></div>';
+	$output .= '<div class="row mt-4"><div class="col-12"><div id="pagination" class="d-flex justify-content-center">' . $perpageresult . '</div></div></div>';
 }
 print $output;
 ?>

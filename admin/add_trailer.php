@@ -23,7 +23,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Those movies which doesn't have any trailer</h1>
+            <h1 class="m-0 text-dark">
+              <i class="fas fa-video mr-2" style="color: #667eea;"></i>
+              Add Trailers
+            </h1>
+            <p class="text-muted mb-0 mt-1">Movies without trailers - add YouTube links</p>
           </div><!-- /.col -->
           <div class="col-sm-6">
 

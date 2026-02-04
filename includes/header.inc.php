@@ -1,4 +1,38 @@
-<?php date_default_timezone_set('Asia/Kabul'); ?>
+<?php 
+// Load environment variables
+function loadEnvIfNeeded() {
+    if (getenv('APP_ENV') === false) {
+        $envPath = __DIR__ . '/../.env';
+        if (file_exists($envPath)) {
+            $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                if (strpos(trim($line), '#') === 0) continue;
+                if (strpos($line, '=') !== false) {
+                    list($name, $value) = explode('=', $line, 2);
+                    putenv(trim($name) . '=' . trim($value));
+                }
+            }
+        }
+    }
+}
+loadEnvIfNeeded();
+
+// Error reporting configuration
+$appEnv = getenv('APP_ENV') ?: 'production';
+$appDebug = filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN);
+
+if ($appEnv === 'production' && !$appDebug) {
+    error_reporting(0);
+    ini_set('display_errors', '0');
+    ini_set('display_startup_errors', '0');
+} else {
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+}
+
+date_default_timezone_set('Asia/Kabul'); 
+?>
 <?php require_once("admin/includes/initialize.php"); ?>
 <?php $page_name = get_page_name(); ?>
 <!--A Design by W3layouts
@@ -32,16 +66,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="assets/css/search_style.css" rel="stylesheet">
-<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<!-- Bootstrap 5.3 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Google Fonts - Inter (Modern) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Magnific Popup core CSS file -->
-<link rel="stylesheet" href="assets/css/magnific-popup.css"> 
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+<!-- Custom CSS (legacy for backward compatibility) -->
+<link href="assets/css/search_style.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+
+<!-- Modern UI Styles (Bootstrap 5 Compatible) -->
+<link href="assets/css/modern-ui.css" rel="stylesheet" type="text/css"> 
 
 <style type="text/css">
       /**
@@ -126,25 +170,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body style="position: relative;">
 	<div id="overlay"><div><img src="assets/images/loading.gif" width="64px" height="64px"/></div></div>
-	<div class="background-image">
-	<div class="container">
-	<div class="container_wrap">
-		<div class="header_top">
-		    <div class="col-sm-4 logo"><a href="index.php"><img src="assets/images/logo.png" alt=""/></a></div>
-		    <div class="col-sm-5 nav">
-			  <ul>
-				 <li class="col-sm-1"> <span class="simptip-position-bottom simptip-movable" data-tooltip="contact"><a href="contact.php" style="background:none;"> <i class="fa fa-comments-o fa-2x fa-pull-right"></i> </a></span></li>
-				 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="movie"><a href="movie.php" style="background:none;"> <i class="fa fa-film fa-2x fa-pull-right"></i> </a> </span></li>
-				 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="trailers"><a href="trailers.php" style="background:none;"> <i class="fa fa-youtube-play fa-2x fa-pull-right"></i> </a></span></li>
-				<li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="search"><a href="search.php" style="background:none;"> <i class="fa fa-search fa-2x fa-pull-right"></i> </a></span></li>			
-			 </ul>
+	
+	<!-- Modern Bootstrap 5 Navigation -->
+	<nav class="modern-navbar navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="index.php">
+				<img src="assets/images/logo.png" alt="MNF Movies" class="logo">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item">
+						<a class="nav-link <?php echo ($page_name == 'index.php') ? 'active' : ''; ?>" href="index.php">
+							<i class="fas fa-home me-1"></i> Home
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php echo ($page_name == 'movie.php') ? 'active' : ''; ?>" href="movie.php">
+							<i class="fas fa-film me-1"></i> Movies
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php echo ($page_name == 'trailers.php') ? 'active' : ''; ?>" href="trailers.php">
+							<i class="fas fa-youtube me-1"></i> Trailers
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php echo ($page_name == 'search.php') ? 'active' : ''; ?>" href="search.php">
+							<i class="fas fa-search me-1"></i> Search
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php echo ($page_name == 'contact.php') ? 'active' : ''; ?>" href="contact.php">
+							<i class="fas fa-envelope me-1"></i> Contact
+						</a>
+					</li>
+				</ul>
+				<div class="d-flex align-items-center">
+					<a href="http://mnfprofile.com" target="_blank" class="text-decoration-none text-white d-flex align-items-center">
+						<img src="assets/images/mnf.png" class="rounded-circle me-2" alt="Mohammad Naim Faizy" width="35" height="35"/>
+						<span class="d-none d-lg-inline">M.Naim Faizy</span>
+					</a>
+				</div>
 			</div>
-			<div class="col-sm-3 header_right">
-			   <ul class="header_right_box">
-				 <li><img src="assets/images/mnf.png" class="img-circle" alt="Mohammad Naim Faizy"/></li>
-				 <li><p><a href="http://mnfprofile.com" target="_blank">M.Naim Faizy</a></p></li>
-				 <div class="clearfix"> </div>
-			   </ul>
-			</div>
-			<div class="clearfix"> </div>
-	      </div>
+		</div>
+	</nav>
+
+	<!-- Legacy background and header (hidden for modern design) -->
+	<div class="background-image" style="display: none;">
+		<div class="container">
+			<div class="container_wrap">
+				<div class="header_top">
+				    <div class="col-sm-4 logo"><a href="index.php"><img src="assets/images/logo.png" alt=""/></a></div>
+				    <div class="col-sm-5 nav">
+					  <ul>
+						 <li class="col-sm-1"> <span class="simptip-position-bottom simptip-movable" data-tooltip="contact"><a href="contact.php" style="background:none;"> <i class="fa fa-comments-o fa-2x fa-pull-right"></i> </a></span></li>
+						 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="movie"><a href="movie.php" style="background:none;"> <i class="fa fa-film fa-2x fa-pull-right"></i> </a> </span></li>
+						 <li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="trailers"><a href="trailers.php" style="background:none;"> <i class="fa fa-youtube-play fa-2x fa-pull-right"></i> </a></span></li>
+						<li class="col-sm-1"><span class="simptip-position-bottom simptip-movable" data-tooltip="search"><a href="search.php" style="background:none;"> <i class="fa fa-search fa-2x fa-pull-right"></i> </a></span></li>			
+					 </ul>
+					</div>
+					<div class="col-sm-3 header_right">
+					   <ul class="header_right_box">
+						 <li><img src="assets/images/mnf.png" class="img-circle" alt="Mohammad Naim Faizy"/></li>
+						 <li><p><a href="http://mnfprofile.com" target="_blank">M.Naim Faizy</a></p></li>
+						 <div class="clearfix"> </div>
+					   </ul>
+					</div>
+					<div class="clearfix"> </div>
+			      </div><!-- /header_top -->
+			</div><!-- /container_wrap -->
+		</div><!-- /container -->
+	</div><!-- /background-image -->
+	
+	<!-- Main content starts here (outside hidden legacy wrapper) -->

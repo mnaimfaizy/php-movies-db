@@ -2,10 +2,13 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      <span class="mr-2">Powered by</span>
+      <i class="fas fa-heart" style="color: #eb3349;"></i>
+      <span class="ml-1">PHP & MySQL</span>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="/" style="color: #667eea;">MNF Movies Database</a>.</strong> 
+    <span class="d-none d-md-inline-block ml-1">All rights reserved.</span>
   </footer>
 
    </div>

@@ -190,7 +190,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Add New Movie</h1>
+            <h1 class="m-0 text-dark">
+              <i class="fas fa-plus-circle mr-2" style="color: #667eea;"></i>
+              Add New Movie
+            </h1>
+            <p class="text-muted mb-0 mt-1">Add movies using IMDB API or manually</p>
           </div><!-- /.col -->
           <div class="col-sm-6">
 

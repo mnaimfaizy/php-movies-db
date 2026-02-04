@@ -34,6 +34,7 @@ if($pagination_setting == "prev-next") {
 
 
 $output = '';
+$output .= '<div class="row g-4">';
 foreach($faq as $movie) {
 	// The Regular Express filter
 	$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
@@ -45,17 +46,31 @@ foreach($faq as $movie) {
 	} else {
 		$poster = 'assets/images/movie_poster/'.$movie['poster'];
 	}
+	
+	$year = $movie['year'] ?? '';
+	$rating = $movie['rating'] ?? 'N/A';
 
-	$output .= '<div class="col-md-3" style="margin-bottom: 20px;">';
-	$output .= '<a class="popup-youtube" href="'.$movie['trailer'].'" target="_blank">';
-	$output .= '<div class="grid_2">';
-	$output .= '<img src="'.$poster.'" style="width:250px; height:229px;" class="img-responsive" alt="'.$movie['movie_title'].'"/>';
+	$output .= '<div class="col-6 col-md-4 col-lg-3">';
+	$output .= '<div class="trailer-card">';
+	$output .= '<a class="popup-youtube" href="'.$movie['trailer'].'">';
+	$output .= '<div class="trailer-poster">';
+	$output .= '<img src="'.$poster.'" class="img-fluid" alt="'.htmlspecialchars($movie['movie_title']).'" loading="lazy"/>';
+	$output .= '<div class="trailer-play-overlay"><i class="fas fa-play-circle"></i></div>';
+	$output .= '</div>';
+	$output .= '<div class="trailer-info">';
+	$output .= '<h6 class="trailer-title">'.htmlspecialchars($movie['movie_title']).'</h6>';
+	$output .= '<div class="trailer-meta">';
+	$output .= '<span class="trailer-year"><i class="far fa-calendar-alt"></i> '.$year.'</span>';
+	$output .= '<span class="trailer-rating"><i class="fas fa-star text-warning"></i> '.$rating.'</span>';
+	$output .= '</div>';
 	$output .= '</div>';
 	$output .= '</a>';
 	$output .= '</div>';
+	$output .= '</div>';
 }
+$output .= '</div>';
 if(!empty($perpageresult)) {
-$output .= '<div class="col-md-12"><div id="pagination">' . $perpageresult . '</div></div>';
+$output .= '<div class="col-12 mt-4"><div id="pagination" class="d-flex justify-content-center">' . $perpageresult . '</div></div>';
 }
 print $output;
 ?>

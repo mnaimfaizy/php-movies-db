@@ -34,49 +34,53 @@ if($pagination_setting == "prev-next") {
 }
 
 if($db_handle->numRows($sql) < 1) {
-	print '<div class="alert alert-danger">
-	<h1 style="text-align: center"> Sorry no movie for this year, please select another year! </h1></div>';
+	print '<div class="empty-state"><i class="fas fa-calendar-times"></i><h4>No Movies Found</h4><p>Sorry, no movies found for this year. Please select another year!</p></div>';
 } else { 
 	$output = '';
+	$output .= '<div class="movies-grid">'; // Start modern grid
+	
 	foreach($faq as $movie) {
 		// The Regular Express filter
 		$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-z]{2,3}(\/\S*)?/";
 		// The text you want to filter goes here. 
-		$text = $movie['poster'];
+		$text = isset($movie['poster']) ? $movie['poster'] : '';
 		// Check if there is a url in the text
 		if(preg_match($reg_exUrl, $text, $url)) {
 			$poster = $url[0];
 		} else {
-			$poster = 'assets/images/movie_poster/'.$movie['poster'];
+			$poster = !empty($movie['poster']) ? 'assets/images/movie_poster/'.$movie['poster'] : 'assets/images/movie_poster/default.jpg';
 		}
 
-		$output .= '<div class="movie movie-test movie-test-dark movie-test-left">';
-		$output .= '<div class="movie__images">';
-		$output .= '<a href="single.php?movie_id='.$movie['movie_id'].'" class="movie-beta__link">';
-		$output .= '<img alt="" src="'.$poster.'" class="img-responsive" alt="'.$movie['movie_title'].'" width="250" height="240" style="width:250px; height:240px;"/>';
-		$output .= '</a></div>';
-		$output .= '<div class="movie__info">';
-		$output .= '<a href="single.php?movie_id='.$movie['movie_id'].'" class="movie__title">';
-		$output .= $movie['movie_title']; 
-		$output .= (!empty($movie_info['year'])) ? '('.$movie_info['year'].')' : '';  
-		$output .= '</a>';
-		$output .= '<p class="movie__time">'.$movie['duration'].'</p>';
-		$output .= '<p class="movie__option">';
-		$output .= $movie['genre'];
-		$output .= '</a></p></div>';
-		$output .= '<ul class="list_6">';
-		$output .= '<li><p>'.$movie['country'].'</p></li>';
-		$output .= '<li><i class="icon3"> </i><p>'. $movie['release_date'].'</p></li>';
-		$output .= '<li>Rating : &nbsp;&nbsp;<p class="btn btn-danger btn-sm btn-circle">'.$movie['rating'].'</p></li>';
-		$output .= '<div class="clearfix"> </div>';
-		$output .= '</ul></div>';
+		// Modern Movie Card
+		$output .= '<div class="movie-card">';
+		$output .= '  <div class="movie-card-image">';
+		$output .= '    <img src="'.$poster.'" alt="'.htmlspecialchars($movie['movie_title']).'">';
+		$output .= '    <span class="movie-card-rating"><i class="fas fa-star"></i> '.$movie['rating'].'</span>';
+		$output .= '    <div class="movie-card-overlay">';
+		$output .= '      <div class="movie-card-actions">';
+		$output .= '        <a href="single.php?movie_id='.$movie['movie_id'].'" class="btn btn-primary btn-sm"><i class="fas fa-play"></i> Watch</a>';
+		$output .= '        <a href="single.php?movie_id='.$movie['movie_id'].'" class="btn btn-outline-light btn-sm"><i class="fas fa-info-circle"></i> Info</a>';
+		$output .= '      </div>';
+		$output .= '    </div>';
+		$output .= '  </div>';
+		$output .= '  <div class="movie-card-body">';
+		$output .= '    <h5 class="movie-card-title">';
+		$output .= '      <a href="single.php?movie_id='.$movie['movie_id'].'" class="text-white text-decoration-none">';
+		$output .= htmlspecialchars($movie['movie_title']);
+		$output .= '      </a>';
+		$output .= '    </h5>';
+		$output .= '    <div class="movie-card-meta">';
+		$output .= '      <span class="movie-card-year"><i class="far fa-calendar"></i> '.(!empty($movie['year']) ? $movie['year'] : 'N/A').'</span>';
+		$output .= '      <span class="movie-card-genre">'.(isset($movie['genre']) ? $movie['genre'] : '').'</span>';
+		$output .= '    </div>';
+		$output .= '  </div>';
+		$output .= '</div>';
 	}
 	
+	$output .= '</div>'; // End movies grid
+	
 	if(!empty($perpageresult)) {
-		$output .= '<div class="col-md-12"><div id="pagination">' . $perpageresult . '</div></div>';
-	} else {
-		$output = '<div class="alert alert-danger">
-			<h1 style="text-align: center"> Sorry no movie for this year, please select another year! </h1></div>';
+		$output .= '<div class="row mt-4"><div class="col-12"><div id="pagination" class="d-flex justify-content-center">' . $perpageresult . '</div></div></div>';
 	}
 	print $output;
 }

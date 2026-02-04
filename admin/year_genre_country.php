@@ -88,7 +88,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Add Year / Genre / Country</h1>
+            <h1 class="m-0 text-dark">
+              <i class="fas fa-tags mr-2" style="color: #667eea;"></i>
+              Manage Categories
+            </h1>
+            <p class="text-muted mb-0 mt-1">Add and manage years, genres, and countries</p>
           </div><!-- /.col -->
           <div class="col-sm-6">
 

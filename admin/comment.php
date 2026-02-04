@@ -22,7 +22,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
+            <h1 class="m-0 text-dark">
+              <i class="fas fa-comments mr-2" style="color: #667eea;"></i>
+              User Comments
+            </h1>
+            <p class="text-muted mb-0 mt-1">View and manage all user comments</p>
           </div><!-- /.col -->
           <div class="col-sm-6">
     

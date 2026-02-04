@@ -10,7 +10,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Movies List</h1>
+            <h1 class="m-0 text-dark">
+              <i class="fas fa-film mr-2" style="color: #667eea;"></i>
+              Movies List
+            </h1>
+            <p class="text-muted mb-0 mt-1">Manage all your movies in one place</p>
           </div><!-- /.col -->
           <div class="col-sm-6">
 

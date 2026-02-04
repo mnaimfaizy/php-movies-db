@@ -1,18 +1,56 @@
 <?php
 
+// Load environment variables from .env file
+function loadEnv($path) {
+    if (!file_exists($path)) {
+        return;
+    }
+    
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        // Skip comments
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+        
+        // Parse line
+        if (strpos($line, '=') !== false) {
+            list($name, $value) = explode('=', $line, 2);
+            $name = trim($name);
+            $value = trim($value);
+            
+            if (!array_key_exists($name, $_ENV)) {
+                putenv("$name=$value");
+                $_ENV[$name] = $value;
+                $_SERVER[$name] = $value;
+            }
+        }
+    }
+}
+
+// Load .env file (go up two directories from admin/includes/)
+loadEnv(__DIR__ . '/../../.env');
+
 class MySQLDatabase {
 	
 	private $connection;
 	public $last_query;
 	private $magic_quotes_active;
 	private $real_escape_string;
-    private $host = 'php_movies_db';
-    private $user = 'admin';
-    private $password = 'Kabul@123';
-    private $database = 'php_movies_db';
-    private $port = 3306;
+    private $host;
+    private $user;
+    private $password;
+    private $database;
+    private $port;
 
     function __construct() {
+        // Load from environment variables or use defaults
+        $this->host = getenv('DB_HOST') ?: 'php_movies_db';
+        $this->user = getenv('DB_USERNAME') ?: 'admin';
+        $this->password = getenv('DB_PASSWORD') ?: 'Kabul@123';
+        $this->database = getenv('DB_DATABASE') ?: 'php_movies_db';
+        $this->port = getenv('DB_PORT') ?: 3306;
+        
         $this->open_connection();
         $this->magic_quotes_active = (bool) ini_get('magic_quotes_gpc');
         $this->real_escape_string = function_exists('mysqli_real_escape_string');
